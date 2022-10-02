@@ -6,12 +6,9 @@ import { Link, useNavigate } from "react-router-dom";
 const HomePage = () => {
   let navigate = useNavigate();
 
-  const getHost = async () => {
-    navigate("/signup", { state: { type: "host" } });
-  };
-
-  const getGuest = async () => {
-    navigate("/signup", { state: { type: "guest" } });
+  const getButtonType = async (type) => {
+    console.log(type);
+    navigate("/signup", { state: { type: type } });
   };
 
   return (
@@ -26,10 +23,10 @@ const HomePage = () => {
         >
           Login
         </Button>
-        <Button variant="contained" type="host" onClick={getHost}>
+        <Button variant="contained" onClick={() => getButtonType("host")}>
           Want to Host
         </Button>
-        <Button variant="contained" type="guest" onClick={getGuest}>
+        <Button variant="contained" onClick={() => getButtonType("guest")}>
           Looking for shelter
         </Button>
       </Container>
