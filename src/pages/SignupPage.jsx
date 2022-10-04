@@ -1,11 +1,15 @@
 import { Button } from "@mui/material";
 import React, { useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import { API_URL } from "../utils/constants";
+import axios from "axios";
+
+const baseURL = API_URL;
 
 const SignupPage = () => {
   const { state } = useLocation();
   const { type } = state || {};
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -21,6 +25,26 @@ const SignupPage = () => {
 
   const handleSignupSubmit = (e) => {
     e.preventDefault();
+
+    axios({
+      url: `auth/signup/${type}`,
+      baseURL: baseURL,
+      method: "post",
+      data: {
+        email,
+        password,
+        firstName,
+        lastName,
+      },
+    })
+      .then((response) => {
+        // console.log(response.data);
+        navigate("/login");
+      })
+      .catch((error) => {
+        const errorDescription = error.response.data.message;
+        setErrorMessage(errorDescription);
+      });
   };
 
   return (

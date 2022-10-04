@@ -1,16 +1,41 @@
 import { Button } from "@mui/material";
+import axios from "axios";
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { API_URL } from "../utils/constants";
+
+const baseURL = API_URL;
 
 const LoginPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
 
+  const navigate = useNavigate();
+
   const handleEmail = (e) => setEmail(e.target.value);
   const handlePassword = (e) => setPassword(e.target.value);
 
   const handleLoginSubmit = (e) => {
     e.preventDefault();
+
+    const requestBody = { email, password };
+
+    axios
+      .post(`${baseURL}/auth/login`, requestBody)
+      .then((response) => {
+        // console.log("JWT token", response.data.authToken);
+
+        storeToken(response.data.authToken);
+
+        authenticateUser();
+
+        navigate("/");
+      })
+      .catch((error) => {
+        const errorDescription = error.response.data.message;
+        setErrorMessage(errorDescription);
+      });
   };
 
   return (
