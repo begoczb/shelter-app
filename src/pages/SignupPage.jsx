@@ -38,12 +38,13 @@ const SignupPage = () => {
       },
     })
       .then((response) => {
-        // console.log(response.data);
+        console.log(response.data);
         navigate("/login");
       })
       .catch((error) => {
-        const errorDescription = error.response.data.message;
-        setErrorMessage(errorDescription);
+        console.log(error);
+        // const errorDescription = error.response.data.message;
+        // setErrorMessage(errorDescription);
       });
   };
 

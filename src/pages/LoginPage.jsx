@@ -26,15 +26,16 @@ const LoginPage = () => {
       .then((response) => {
         // console.log("JWT token", response.data.authToken);
 
-        storeToken(response.data.authToken);
+        // storeToken(response.data.authToken);
 
-        authenticateUser();
+        // authenticateUser();
 
         navigate("/");
       })
       .catch((error) => {
-        const errorDescription = error.response.data.message;
-        setErrorMessage(errorDescription);
+        console.log(error);
+        // const errorDescription = error.response.data.message;
+        // setErrorMessage(errorDescription);
       });
   };
 
