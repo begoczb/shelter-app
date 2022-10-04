@@ -7,7 +7,7 @@ const HomePage = () => {
   let navigate = useNavigate();
 
   const getButtonType = async (type) => {
-    console.log(type);
+    // console.log(type);
     navigate("/signup", { state: { type: type } });
   };
 
