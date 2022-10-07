@@ -56,7 +56,7 @@ const SignupPage = () => {
         <form onSubmit={handleSignupSubmit} className="form">
           <label>First Name:</label>
           <input
-            type="firstName"
+            type="text"
             name="firstName"
             value={firstName}
             onChange={handleFirstName}
@@ -64,7 +64,7 @@ const SignupPage = () => {
 
           <label>Last Name:</label>
           <input
-            type="lastName"
+            type="text"
             name="lastName"
             value={lastName}
             onChange={handleLastName}
@@ -72,7 +72,7 @@ const SignupPage = () => {
 
           <label>Email:</label>
           <input
-            type="text"
+            type="email"
             name="email"
             value={email}
             onChange={handleEmail}

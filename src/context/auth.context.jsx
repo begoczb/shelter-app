@@ -50,9 +50,10 @@ const AuthContextWrapper = ({ children }) => {
     })
       .then((response) => {
         const { email, firstName } = response.data.payload;
-        console.log(`this is the payload`, response.data.payload);
-        setUser({ name: firstName });
-        console.log(user);
+        
+        // console.log(`this is the payload`, response.data.payload);
+        setUser({ name: firstName});
+        // console.log(user);
         setIsLoggedIn(true);
         setIsLoading(false);
       })

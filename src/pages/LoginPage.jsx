@@ -49,7 +49,7 @@ const LoginPage = () => {
 
       <form onSubmit={handleLoginSubmit} className="form">
         <label>Email:</label>
-        <input type="text" name="email" value={email} onChange={handleEmail} />
+        <input type="email" name="email" value={email} onChange={handleEmail} />
 
         <label>Password:</label>
         <input
