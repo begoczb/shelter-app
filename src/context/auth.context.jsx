@@ -9,7 +9,7 @@ const baseURL = API_URL;
 const AuthContextWrapper = ({ children }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState({});
 
   const storeToken = (token) => {
     localStorage.setItem("authToken", token);
@@ -49,9 +49,10 @@ const AuthContextWrapper = ({ children }) => {
       },
     })
       .then((response) => {
-        const {email} = response.data.payload;
-        console.log(`this is the payload`, response.data.payload)
-        setUser(email);
+        const { email, firstName } = response.data.payload;
+        console.log(`this is the payload`, response.data.payload);
+        setUser({ name: firstName });
+        console.log(user);
         setIsLoggedIn(true);
         setIsLoading(false);
       })
