@@ -51,7 +51,7 @@ const Form = () => {
   return (
     <>
       <Container>
-        <form className="form" onSubmit={handleSignupSubmit} className="form">
+        <form className="form" onSubmit={handleSignupSubmit}>
           <label>Address:</label>
           <input
             type="text"
@@ -84,6 +84,7 @@ const Form = () => {
           <label>Start Date:</label>
           <input
             type="date"
+            min="2023-01-01"
             name="startDate"
             value={startDate}
             onChange={handleStartDate}
