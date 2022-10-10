@@ -1,9 +1,8 @@
-
-import { Button } from "@mui/material";
+import { Button, Container } from "@mui/material";
 import React, { useState } from "react";
 import { API_URL } from "../../utils/constants";
 import axios from "axios";
-import "./Form.css"
+import "./Form.css";
 
 const baseURL = API_URL;
 
@@ -12,8 +11,8 @@ const Form = () => {
   const [guests, setGuests] = useState("");
   const [gender, setGender] = useState("");
   const [pet, setPet] = useState("");
-const [startDate, setStartDate] = useState("");
-const [endDate, setEndDate] = useState("");
+  const [startDate, setStartDate] = useState("");
+  const [endDate, setEndDate] = useState("");
 
   const [errorMessage, setErrorMessage] = useState(undefined);
 
@@ -23,7 +22,7 @@ const [endDate, setEndDate] = useState("");
   const handlePet = (e) => setPet(e.target.value);
   const handleStartDate = (e) => setStartDate(e.target.value);
   const handleEndDate = (e) => setEndDate(e.target.value);
-  
+
   const handleSignupSubmit = (e) => {
     e.preventDefault();
 
@@ -51,67 +50,60 @@ const [endDate, setEndDate] = useState("");
 
   return (
     <>
-    <form className="form" onSubmit={handleSignupSubmit} className="form">
+      <Container>
+        <form className="form" onSubmit={handleSignupSubmit} className="form">
+          <label>Address:</label>
+          <input
+            type="text"
+            name="address"
+            value={address}
+            onChange={handleAddress}
+          />
 
+          <label>Number:</label>
+          <input
+            type="number"
+            name="guests"
+            min="1"
+            max="10"
+            value={guests}
+            onChange={handleGuests}
+          />
 
-    <label>Address:</label>
-    <input
-      type="text"
-      name="address"
-      value={address}
-      onChange={handleAddress}
-    />
+          <label>Women only:</label>
+          <input
+            type="checkbox"
+            name="gender"
+            value={gender}
+            onChange={handleGender}
+          />
 
-    <label>Number:</label>
-    <input
-      type="number"
-      name="guests"
-      min="1"
-      max="10"
-      value={guests}
-      onChange={handleGuests}
-    />
+          <label>Pet:</label>
+          <input type="checkbox" name="pet" value={pet} onChange={handlePet} />
 
-    <label>Women only:</label>
-    <input
-      type="checkbox"
-      name="gender"
-      value={gender}
-      onChange={handleGender}
-    />
+          <label>Start Date:</label>
+          <input
+            type="date"
+            name="startDate"
+            value={startDate}
+            onChange={handleStartDate}
+          />
 
-  <label>Pet:</label>
-    <input
-      type="checkbox"
-      name="pet"
-      value={pet}
-      onChange={handlePet}
-    />
+          <label>End Date:</label>
+          <input
+            type="date"
+            name="endDate"
+            value={endDate}
+            onChange={handleEndDate}
+          />
 
-    <label>Start Date:</label>
-    <input
-      type="date"
-      name="startDate"
-      value={startDate}
-      onChange={handleStartDate}
-    />
-
-    <label>End Date:</label>
-    <input
-      type="date"
-      name="endDate"
-      value={endDate}
-      onChange={handleEndDate}
-    />
-
-
-
-    <Button variant="contained" type="submit">
-      Add
-    </Button>
-  </form>
+          <Button variant="contained" type="submit">
+            Add
+          </Button>
+        </form>
+      </Container>
     </>
-  )
-}
+  );
+};
 
-export default Form
+export default Form;
