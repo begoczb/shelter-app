@@ -52,10 +52,13 @@ const Form = () => {
     <>
       <Container>
         <form className="form" onSubmit={handleSignupSubmit}>
-          <label>Address:</label>
+
+          {/* <label>Address:</label> */}
+
           <input
             type="text"
             name="address"
+            placeholder="Address"
             value={address}
             onChange={handleAddress}
           />
@@ -78,7 +81,7 @@ const Form = () => {
             onChange={handleGender}
           />
 
-          <label>Pet:</label>
+          <label>Pets autorized:</label>
           <input type="checkbox" name="pet" value={pet} onChange={handlePet} />
 
           <label>Start Date:</label>
@@ -86,6 +89,7 @@ const Form = () => {
             type="date"
             min="2023-01-01"
             name="startDate"
+            min={new Date().toISOString().substring(0, 10)}
             value={startDate}
             onChange={handleStartDate}
           />

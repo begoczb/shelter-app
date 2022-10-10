@@ -54,34 +54,38 @@ const SignupPage = () => {
         <h1>Sign Up</h1>
 
         <form onSubmit={handleSignupSubmit} className="form">
-          <label>First Name:</label>
+          {/* <label>First Name:</label> */}
           <input
             type="text"
             name="firstName"
+            placeholder="First Name"
             value={firstName}
             onChange={handleFirstName}
           />
 
-          <label>Last Name:</label>
+          {/* <label>Last Name:</label> */}
           <input
             type="text"
             name="lastName"
+            placeholder="Last Name"
             value={lastName}
             onChange={handleLastName}
           />
 
-          <label>Email:</label>
+          {/* <label>Email:</label> */}
           <input
             type="email"
             name="email"
+            placeholder="Email"
             value={email}
             onChange={handleEmail}
           />
 
-          <label>Password:</label>
+          {/* <label>Password:</label> */}
           <input
             type="password"
             name="password"
+            placeholder="Password"
             value={password}
             onChange={handlePassword}
           />
