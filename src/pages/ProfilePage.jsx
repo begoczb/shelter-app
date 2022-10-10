@@ -1,21 +1,48 @@
 import React, { useContext, useState } from "react";
 import { AuthContext } from "../context/auth.context";
 import BasicModal from "../components/Modal";
-
-
+import { useEffect } from "react";
+import axios from "axios";
+import { API_URL } from "../utils/constants";
 
 const ProfilePage = () => {
-  const { user } = useContext(AuthContext);
+  const { user, getToken } = useContext(AuthContext);
   // console.log(user);
 
+  const [hostInfo, setHostInfo] = useState("");
+  const [hostRooms, setHostRooms] = useState([]);
 
+  useEffect(() => {
+    const getHostInfo = async () => {
+      const token = getToken();
+      const { data } = await axios({
+        method: "get",
+        baseURL: API_URL,
+        url: "host",
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      setHostInfo(data.hostInfo);
+      setHostRooms(data.roomInfo);
+    };
 
+    getHostInfo();
+  }, []);
 
   return (
     <>
       <main>
         <h3>Hello {user.name} </h3>
-        <BasicModal/>
+        <div>
+          <span>{hostInfo.firstName}</span>
+          <span>{hostInfo.lastName}</span>
+          <span>{hostInfo.email}</span>
+          <ul>
+            {hostRooms.map((elem) => (
+              <li key={elem._id}>{elem._id}</li>
+            ))}
+          </ul>
+        </div>
+        <BasicModal />
       </main>
     </>
   );

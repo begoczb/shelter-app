@@ -52,7 +52,9 @@ const Form = () => {
     <>
       <Container>
         <form className="form" onSubmit={handleSignupSubmit}>
+
           {/* <label>Address:</label> */}
+
           <input
             type="text"
             name="address"
@@ -85,6 +87,7 @@ const Form = () => {
           <label>Start Date:</label>
           <input
             type="date"
+            min="2023-01-01"
             name="startDate"
             min={new Date().toISOString().substring(0, 10)}
             value={startDate}

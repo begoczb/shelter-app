@@ -1,10 +1,9 @@
 import { Button } from "@mui/material";
 import axios from "axios";
 import React, { useState, useContext } from "react";
-import {AuthContext} from "../context/auth.context"
+import { AuthContext } from "../context/auth.context";
 import { useNavigate } from "react-router-dom";
 import { API_URL } from "../utils/constants";
-
 
 const baseURL = API_URL;
 
@@ -13,9 +12,8 @@ const LoginPage = () => {
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
 
-  
   const navigate = useNavigate();
-  const {storeToken, authenticateUser} = useContext(AuthContext)
+  const { storeToken, authenticateUser } = useContext(AuthContext);
 
   const handleEmail = (e) => setEmail(e.target.value);
   const handlePassword = (e) => setPassword(e.target.value);
@@ -26,7 +24,7 @@ const LoginPage = () => {
     const requestBody = { email, password };
 
     axios
-      .post(`${baseURL}/auth/login`, requestBody)
+      .post(`${baseURL}auth/login`, requestBody)
       .then((response) => {
         console.log("JWT token", response.data.authToken);
 
