@@ -51,11 +51,12 @@ const Form = () => {
   return (
     <>
       <Container>
-        <form className="form" onSubmit={handleSignupSubmit} className="form">
-          <label>Address:</label>
+        <form className="form" onSubmit={handleSignupSubmit}>
+          {/* <label>Address:</label> */}
           <input
             type="text"
             name="address"
+            placeholder="Address"
             value={address}
             onChange={handleAddress}
           />
@@ -78,13 +79,14 @@ const Form = () => {
             onChange={handleGender}
           />
 
-          <label>Pet:</label>
+          <label>Pets autorized:</label>
           <input type="checkbox" name="pet" value={pet} onChange={handlePet} />
 
           <label>Start Date:</label>
           <input
             type="date"
             name="startDate"
+            min={new Date().toISOString().substring(0, 10)}
             value={startDate}
             onChange={handleStartDate}
           />
