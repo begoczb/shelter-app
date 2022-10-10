@@ -1,5 +1,6 @@
 import axios from "axios";
 import { createContext, useCallback, useEffect, useState } from "react";
+import { Navigate, useNavigate } from "react-router-dom";
 import { API_URL } from "../utils/constants";
 
 const AuthContext = createContext();
@@ -10,6 +11,8 @@ const AuthContextWrapper = ({ children }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [user, setUser] = useState({});
+
+  const navigate = useNavigate();
 
   const storeToken = (token) => {
     localStorage.setItem("authToken", token);
@@ -26,6 +29,7 @@ const AuthContextWrapper = ({ children }) => {
   const logOutUser = () => {
     removeToken();
     authenticateUser();
+    navigate("/");
   };
 
   const authenticateUser = useCallback(() => {
@@ -50,9 +54,9 @@ const AuthContextWrapper = ({ children }) => {
     })
       .then((response) => {
         const { email, firstName } = response.data.payload;
-        
+
         // console.log(`this is the payload`, response.data.payload);
-        setUser({ name: firstName});
+        setUser({ name: firstName });
         // console.log(user);
         setIsLoggedIn(true);
         setIsLoading(false);
