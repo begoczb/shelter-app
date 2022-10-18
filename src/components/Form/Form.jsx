@@ -20,7 +20,7 @@ const Form = () => {
 
   const handleAddress = ({ target: { name, value } }) => {
     setAddress({ ...address, hasChanged: true, [name]: value });
-    console.log(address);
+    //console.log(address);
   };
 
   const handleGuests = (e) => setGuests(e.target.value);
@@ -159,9 +159,7 @@ const Form = () => {
           <input
             type="date"
             name="endDate"
-            min={
-              startDate ? startDate : new Date().toISOString().substring(0, 10)
-            }
+            min={startDate? startDate : new Date().toISOString().substring(0, 10)}
             value={endDate}
             onChange={handleEndDate}
           />
