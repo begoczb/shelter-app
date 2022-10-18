@@ -18,7 +18,11 @@ const Form = () => {
 
   const [errorMessage, setErrorMessage] = useState(undefined);
 
-  const handleAddress = (e) => setAddress(e.target.value);
+  const handleAddress = ({ target: { name, value } }) => {
+    setAddress({ ...address, hasChanged: true, [name]: value });
+    //console.log(address);
+  };
+
   const handleGuests = (e) => setGuests(e.target.value);
   const handleGender = (e) => setGender(e.target.value);
 
@@ -31,8 +35,6 @@ const Form = () => {
   const handleAddRoom = (e) => {
     e.preventDefault();
     const token = getToken();
-    const dateOne = new Date(startDate);
-    const dateTwo = new Date(endDate);
 
     axios({
       url: `room`,
@@ -44,8 +46,8 @@ const Form = () => {
         guests,
         pet,
         gender,
-        dateOne,
-        dateTwo,
+        startDate,
+        endDate,
       },
     })
       .then((response) => {
@@ -74,10 +76,42 @@ const Form = () => {
           {/* <label>Address:</label> */}
 
           <input
+            type="number"
+            name="number"
+            placeholder="Number"
+            value={address.number}
+            onChange={handleAddress}
+          />
+
+          <input
             type="text"
-            name="address"
-            placeholder="Address"
-            value={address}
+            name="street"
+            placeholder="Street"
+            value={address.street}
+            onChange={handleAddress}
+          />
+
+          <input
+            type="text"
+            name="postalCode"
+            placeholder="Postal Code"
+            value={address.postalCode}
+            onChange={handleAddress}
+          />
+
+          <input
+            type="text"
+            name="city"
+            placeholder="City"
+            value={address.city}
+            onChange={handleAddress}
+          />
+
+          <input
+            type="text"
+            name="country"
+            placeholder="Country"
+            value={address.country}
             onChange={handleAddress}
           />
 
