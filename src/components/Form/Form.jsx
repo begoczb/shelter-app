@@ -67,6 +67,8 @@ const Form = () => {
     }
   };
 
+  const date = new Date();
+
   return (
     <>
       <Container>
@@ -115,7 +117,7 @@ const Form = () => {
           <input
             type="date"
             name="startDate"
-            min={new Date().toISOString().substring(0, 10)}
+            min={date.toISOString().substring(0, 10)}
             max={endDate}
             value={startDate}
             onChange={handleStartDate}
@@ -125,7 +127,7 @@ const Form = () => {
           <input
             type="date"
             name="endDate"
-            min={startDate? startDate : new Date().toISOString().substring(0, 10)}
+            min={startDate? startDate : date.toISOString().substring(0, 10)}
             value={endDate}
             onChange={handleEndDate}
           />
