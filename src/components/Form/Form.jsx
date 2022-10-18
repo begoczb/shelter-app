@@ -70,6 +70,11 @@ const Form = () => {
   };
 
   const date = new Date();
+  function addDays(date, days) {
+    var result = new Date(date);
+    result.setDate(result.getDate() + days);
+    return result;
+  }
 
   return (
     <>
@@ -152,7 +157,7 @@ const Form = () => {
             type="date"
             name="startDate"
             min={date.toISOString().substring(0, 10)}
-            max={endDate}
+            max={endDate? addDays(endDate, -1).toISOString().substring(0, 10) : endDate}
             value={startDate}
             onChange={handleStartDate}
           />
@@ -161,7 +166,7 @@ const Form = () => {
           <input
             type="date"
             name="endDate"
-            min={startDate? startDate : date.toISOString().substring(0, 10)}
+            min={startDate? addDays(startDate, 1).toISOString().substring(0, 10) : addDays(date,1).toISOString().substring(0, 10)}
             value={endDate}
             onChange={handleEndDate}
           />
