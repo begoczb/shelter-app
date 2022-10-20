@@ -95,12 +95,14 @@ const Form = () => {
           />
 
 
-          <input
+          <textarea
             type="text"
             name="description"
             placeholder="Description"
             value={description}
+            style={{ width: "100%" }}
             onChange={handleDescription}
+            
           />      
 
           <input
