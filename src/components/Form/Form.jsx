@@ -9,6 +9,8 @@ import { AuthContext } from "../../context/auth.context";
 const baseURL = API_URL;
 
 const Form = () => {
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
   const [address, setAddress] = useState("");
   const [guests, setGuests] = useState("");
   const [gender, setGender] = useState(false);
@@ -23,9 +25,10 @@ const Form = () => {
     //console.log(address);
   };
 
-  const handleGuests = (e) => setGuests(e.target.value);
-  const handleGender = (e) => setGender(e.target.value);
+  const handleTitle = (e) => setTitle(e.target.value);
+  const handleDescription = (e) => setDescription(e.target.value);
 
+  const handleGuests = (e) => setGuests(e.target.value);
   const handleStartDate = (e) => setStartDate(e.target.value);
   const handleEndDate = (e) => setEndDate(e.target.value);
   console.log(startDate);
@@ -81,6 +84,24 @@ const Form = () => {
       <Container>
         <form className="form" onSubmit={handleAddRoom}>
           {/* <label>Address:</label> */}
+
+
+          <input
+            type="text"
+            name="title"
+            placeholder="Title"
+            value={title}
+            onChange={handleTitle}
+          />
+
+
+          <input
+            type="text"
+            name="description"
+            placeholder="Description"
+            value={description}
+            onChange={handleDescription}
+          />      
 
           <input
             type="number"
