@@ -9,10 +9,9 @@ import { AuthContextWrapper } from "./context/auth.context";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <BrowserRouter>
- <AuthContextWrapper>
+    <AuthContextWrapper>
       <App />
-      </AuthContextWrapper>
-   
+    </AuthContextWrapper>
   </BrowserRouter>
 );
 
