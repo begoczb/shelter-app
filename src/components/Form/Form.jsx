@@ -45,6 +45,8 @@ const Form = () => {
       method: "post",
       headers: { Authorization: `Bearer ${token}` },
       data: {
+        title,
+        description,
         address,
         guests,
         pet,
