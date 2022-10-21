@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react";
 import { AuthContext } from "../context/auth.context";
 import BasicModal from "../components/Modal";
 import { useEffect } from "react";
+import { Link } from "react-router-dom";
 import axios from "axios";
 import { API_URL } from "../utils/constants";
 
@@ -38,7 +39,8 @@ const ProfilePage = () => {
           <span>{hostInfo.email}</span>
           <ul>
             {hostRooms.map((elem) => (
-              <li key={elem._id}>{elem._id}</li>
+              <li key={elem._id}>
+              <Link to={elem._id}>{elem.title}</Link> </li>
             ))}
           </ul>
         </div>
