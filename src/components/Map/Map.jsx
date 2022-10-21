@@ -42,11 +42,11 @@ const Map = () => {
     <GoogleMap
       mapContainerStyle={containerStyle}
       center={center}
-      zoom={10}
+      zoom={15}
       onLoad={onLoad}
       onUnmount={onUnmount}
       clickableIcons={false}
-      options={{ streetViewControl: false, disableDefaultUI: true }}
+      options={{ streetViewControl: false, disableDefaultUI: false }}
     ></GoogleMap>
   ) : (
     <></>
