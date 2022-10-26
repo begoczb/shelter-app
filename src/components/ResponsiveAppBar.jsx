@@ -16,7 +16,7 @@ import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/auth.context";
 import { useContext } from "react";
 
-const pages = ["Item 1", "Item 2", "Item 3"];
+const pages = ["Browse", "Item 2", "Item 3"];
 const settings = ["Profile", "Logout"];
 
 const ResponsiveAppBar = () => {
@@ -25,7 +25,7 @@ const ResponsiveAppBar = () => {
 
   const { removeToken, logOutUser } = useContext(AuthContext);
 
-  let navigate = useNavigate();
+  const navigate = useNavigate();
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -43,13 +43,21 @@ const ResponsiveAppBar = () => {
   };
 
   const handleMenuClick = (menu) => {
-    if (menu === "Profile") {
-      navigate("/profile");
-    } else {
-      //   console.log(`we log out`);
-      removeToken();
-      logOutUser();
+    switch (menu) {
+      case "Profile":
+        navigate("/profile");
+        break;
+      case "Browse":
+        navigate("/listings");
+        break;
+      case "Logout":
+        removeToken();
+        logOutUser();
+        break;
+      default:
+        break;
     }
+
     handleCloseUserMenu();
   };
 
@@ -106,7 +114,12 @@ const ResponsiveAppBar = () => {
               }}
             >
               {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
+                <MenuItem
+                  key={page}
+                  onClick={() => {
+                    handleMenuClick(page);
+                  }}
+                >
                   <Typography textAlign="center">{page}</Typography>
                 </MenuItem>
               ))}
