@@ -1,10 +1,18 @@
-import { Button, Container } from "@mui/material";
+import {
+  Button,
+  Checkbox,
+  Container,
+  FormControlLabel,
+  TextField,
+} from "@mui/material";
 import React, { useState } from "react";
 import { API_URL } from "../../utils/constants";
 import axios from "axios";
 import "./Form.css";
 import { useContext } from "react";
 import { AuthContext } from "../../context/auth.context";
+import { TryRounded } from "@mui/icons-material";
+import AddressInput from "../AddressInput/AddressInput";
 
 const baseURL = API_URL;
 
@@ -17,12 +25,14 @@ const Form = () => {
   const [pet, setPet] = useState(false);
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
+  const [addressString, setAddressString] = useState("");
 
   const [errorMessage, setErrorMessage] = useState(undefined);
 
-  const handleAddress = ({ target: { name, value } }) => {
+  const handleAddress = ({ target: { name, value } }, newAddress) => {
     setAddress({ ...address, hasChanged: true, [name]: value });
-    //console.log(address);
+    setAddressString(newAddress);
+    console.log(addressString);
   };
 
   const handleTitle = (e) => setTitle(e.target.value);
@@ -86,36 +96,62 @@ const Form = () => {
       <Container>
         <form className="form" onSubmit={handleAddRoom}>
           {/* <label>Address:</label> */}
-
-
-          <input
+          <TextField
+            id="outlined-basic"
+            label="Title"
+            variant="outlined"
+            value={title}
+            margin="dense"
+            onChange={handleTitle}
+            autoComplete="off"
+          />
+          {/* <input
             type="text"
             name="title"
             placeholder="Title"
             value={title}
             onChange={handleTitle}
+          /> */}
+          <TextField
+            id="outlined-basic"
+            label="Description"
+            variant="outlined"
+            value={description}
+            margin="dense"
+            onChange={handleDescription}
+            autoComplete="off"
+            multiline={true}
+            // rows={2}
           />
-
-
-          <textarea
+          {/* <textarea
             type="text"
             name="description"
             placeholder="Description"
             value={description}
             style={{ width: "100%" }}
             onChange={handleDescription}
-            
-          />      
-
-          <input
+          /> */}
+          {/* <input
             type="number"
             name="number"
             placeholder="Number"
             value={address.number}
             onChange={handleAddress}
+          /> */}
+          <AddressInput handleAddress={handleAddress} />
+          <TextField
+            id="outlined-number"
+            label="Number of Guests"
+            type="number"
+            margin="normal"
+            InputLabelProps={{
+              shrink: true,
+            }}
+            placeholder="0"
+            value={guests}
+            onChange={handleGuests}
           />
-
-          <input
+          {/* <input
             type="text"
             name="street"
             placeholder="Street"
@@ -144,9 +180,8 @@ const Form = () => {
             name="country"
             placeholder="Country"
             value={address.country}
-            onChange={handleAddress}
+            onChange={handleAddress} 
           />
-
           <label>Number:</label>
           <input
             type="number"
@@ -155,9 +190,21 @@ const Form = () => {
             max="10"
             value={guests}
             onChange={handleGuests}
-          />
+          />*/}
 
-          <label>Women only:</label>
+          <FormControlLabel
+            control={
+              <Checkbox
+                checked={gender}
+                onChange={() => {
+                  handleCheckbox("gender");
+                }}
+                sx={{ "& .MuiSvgIcon-root": { fontSize: 28 } }}
+              />
+            }
+            label="WOMEN ONLY"
+          />
+          {/* <label>Women only:</label>
           <input
             type="checkbox"
             name="gender"
@@ -165,9 +212,21 @@ const Form = () => {
             onChange={() => {
               handleCheckbox("gender");
             }}
-          />
+          /> */}
 
-          <label>Pets autorized:</label>
+          <FormControlLabel
+            control={
+              <Checkbox
+                checked={pet}
+                onChange={() => {
+                  handleCheckbox("pet");
+                }}
+                sx={{ "& .MuiSvgIcon-root": { fontSize: 28 } }}
+              />
+            }
+            label="PETS AUTHORIZED"
+          />
+          {/* <label>Pets autorized:</label>
           <input
             type="checkbox"
             name="pet"
@@ -175,27 +234,32 @@ const Form = () => {
             onChange={() => {
               handleCheckbox("pet");
             }}
-          />
-
+          /> */}
           <label>Start Date:</label>
           <input
             type="date"
             name="startDate"
             min={date.toISOString().substring(0, 10)}
-            max={endDate? addDays(endDate, -1).toISOString().substring(0, 10) : endDate}
+            max={
+              endDate
+                ? addDays(endDate, -1).toISOString().substring(0, 10)
+                : endDate
+            }
             value={startDate}
             onChange={handleStartDate}
           />
-
           <label>End Date:</label>
           <input
             type="date"
             name="endDate"
-            min={startDate? addDays(startDate, 1).toISOString().substring(0, 10) : addDays(date,1).toISOString().substring(0, 10)}
+            min={
+              startDate
+                ? addDays(startDate, 1).toISOString().substring(0, 10)
+                : addDays(date, 1).toISOString().substring(0, 10)
+            }
             value={endDate}
             onChange={handleEndDate}
           />
-
           <Button variant="contained" type="submit" onClick={handleAddRoom}>
             Add
           </Button>

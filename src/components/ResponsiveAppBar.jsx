@@ -16,7 +16,7 @@ import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/auth.context";
 import { useContext } from "react";
 
-const pages = ["Browse", "Item 2", "Item 3"];
+const pages = ["Browse"];
 const settings = ["Profile", "Logout"];
 
 const ResponsiveAppBar = () => {
@@ -45,12 +45,15 @@ const ResponsiveAppBar = () => {
   const handleMenuClick = (menu) => {
     switch (menu) {
       case "Profile":
+        console.log(`to profile`);
         navigate("/profile");
         break;
       case "Browse":
+        console.log(`to listings`);
         navigate("/listings");
         break;
       case "Logout":
+        console.log(`we logout`);
         removeToken();
         logOutUser();
         break;
@@ -148,7 +151,9 @@ const ResponsiveAppBar = () => {
             {pages.map((page) => (
               <Button
                 key={page}
-                onClick={handleCloseNavMenu}
+                onClick={() => {
+                  handleMenuClick(page);
+                }}
                 sx={{ my: 2, color: "white", display: "block" }}
               >
                 {page}
