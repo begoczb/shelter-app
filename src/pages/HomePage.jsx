@@ -4,7 +4,7 @@ import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 const HomePage = () => {
-  let navigate = useNavigate();
+  const navigate = useNavigate();
 
   const getButtonType = async (type) => {
     // console.log(type);
