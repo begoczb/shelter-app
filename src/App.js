@@ -17,7 +17,12 @@ function App() {
       <Routes>
         <Route path="" element={<Layout />}>
           <Route path="/" element={<HomePage />} />
-          <Route path="/signup" element={<SignupPage />} />
+          <Route path="/signup" element=
+          {
+            <IsAnonymous>
+            <SignupPage />
+            </IsAnonymous> 
+          } />
 
           <Route path="/login" element=
           {
