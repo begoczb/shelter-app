@@ -8,8 +8,7 @@ import throttle from "lodash/throttle";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 
 import { Autocomplete, Box, Grid, TextField, Typography } from "@mui/material";
-
-//autocomplete stuff
+import axios from "axios";
 
 function loadScript(src, position, id) {
   if (!position) {
@@ -22,8 +21,9 @@ function loadScript(src, position, id) {
   position.appendChild(script);
 }
 const autocompleteService = { current: null };
+let service = null;
 
-const AddressInput = ({ handleAddress }) => {
+const AddressInput = ({ handleAddress, status, handleLocation }) => {
   const [value, setValue] = useState(null);
   const [inputValue, setInputValue] = useState("");
   const [options, setOptions] = useState([]);
@@ -76,6 +76,8 @@ const AddressInput = ({ handleAddress }) => {
         }
 
         if (results) {
+          // console.log(results);
+
           newOptions = [...newOptions, ...results];
         }
 
@@ -91,6 +93,7 @@ const AddressInput = ({ handleAddress }) => {
   return (
     <>
       <Autocomplete
+        // margin="normal"
         disablePortal
         id="google-map-demo"
         getOptionLabel={(option) =>
@@ -106,7 +109,8 @@ const AddressInput = ({ handleAddress }) => {
         onChange={(event, newValue) => {
           setOptions(newValue ? [newValue, ...options] : options);
           setValue(newValue);
-          handleAddress(newValue);
+          status && newValue && handleAddress(newValue);
+          !status && newValue && handleLocation(newValue);
         }}
         onInputChange={(event, newInputValue) => {
           setInputValue(newInputValue);

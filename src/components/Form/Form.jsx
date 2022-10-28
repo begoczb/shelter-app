@@ -19,20 +19,18 @@ const baseURL = API_URL;
 const Form = () => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-  const [address, setAddress] = useState("");
+  const [address, setAddress] = useState({});
   const [guests, setGuests] = useState("");
   const [gender, setGender] = useState(false);
   const [pet, setPet] = useState(false);
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
-  const [addressString, setAddressString] = useState("");
 
   const [errorMessage, setErrorMessage] = useState(undefined);
 
-  const handleAddress = ({ target: { name, value } }, newAddress) => {
-    setAddress({ ...address, hasChanged: true, [name]: value });
-    setAddressString(newAddress);
-    console.log(addressString);
+  const handleAddress = (newAddress) => {
+    const { description, place_id } = newAddress;
+    setAddress({ description, place_id });
   };
 
   const handleTitle = (e) => setTitle(e.target.value);
@@ -41,13 +39,14 @@ const Form = () => {
   const handleGuests = (e) => setGuests(e.target.value);
   const handleStartDate = (e) => setStartDate(e.target.value);
   const handleEndDate = (e) => setEndDate(e.target.value);
-  console.log(startDate);
+  // console.log(startDate);
 
   const { getToken } = useContext(AuthContext);
 
   const handleAddRoom = (e) => {
     e.preventDefault();
     const token = getToken();
+    // console.log(address.geometry.location.lat);
 
     axios({
       url: `room`,
@@ -105,13 +104,7 @@ const Form = () => {
             onChange={handleTitle}
             autoComplete="off"
           />
-          {/* <input
-            type="text"
-            name="title"
-            placeholder="Title"
-            value={title}
-            onChange={handleTitle}
-          /> */}
+
           <TextField
             id="outlined-basic"
             label="Description"
@@ -123,22 +116,8 @@ const Form = () => {
             multiline={true}
             // rows={2}
           />
-          {/* <textarea
-            type="text"
-            name="description"
-            placeholder="Description"
-            value={description}
-            style={{ width: "100%" }}
-            onChange={handleDescription}
-          /> */}
-          {/* <input
-            type="number"
-            name="number"
-            placeholder="Number"
-            value={address.number}
-            onChange={handleAddress}
-          /> */}
-          <AddressInput handleAddress={handleAddress} />
+
+          <AddressInput handleAddress={handleAddress} status={true} />
           <TextField
             id="outlined-number"
             label="Number of Guests"
@@ -151,46 +130,6 @@ const Form = () => {
             value={guests}
             onChange={handleGuests}
           />
-          {/* <input
-            type="text"
-            name="street"
-            placeholder="Street"
-            value={address.street}
-            onChange={handleAddress}
-          />
-
-          <input
-            type="text"
-            name="postalCode"
-            placeholder="Postal Code"
-            value={address.postalCode}
-            onChange={handleAddress}
-          />
-
-          <input
-            type="text"
-            name="city"
-            placeholder="City"
-            value={address.city}
-            onChange={handleAddress}
-          />
-
-          <input
-            type="text"
-            name="country"
-            placeholder="Country"
-            value={address.country}
-            onChange={handleAddress} 
-          />
-          <label>Number:</label>
-          <input
-            type="number"
-            name="guests"
-            min="1"
-            max="10"
-            value={guests}
-            onChange={handleGuests}
-          />*/}
 
           <FormControlLabel
             control={
@@ -204,15 +143,6 @@ const Form = () => {
             }
             label="WOMEN ONLY"
           />
-          {/* <label>Women only:</label>
-          <input
-            type="checkbox"
-            name="gender"
-            value={gender}
-            onChange={() => {
-              handleCheckbox("gender");
-            }}
-          /> */}
 
           <FormControlLabel
             control={
@@ -226,15 +156,7 @@ const Form = () => {
             }
             label="PETS AUTHORIZED"
           />
-          {/* <label>Pets autorized:</label>
-          <input
-            type="checkbox"
-            name="pet"
-            value={pet}
-            onChange={() => {
-              handleCheckbox("pet");
-            }}
-          /> */}
+
           <label>Start Date:</label>
           <input
             type="date"

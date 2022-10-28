@@ -5,19 +5,52 @@ import HomePage from "./pages/HomePage";
 import SignupPage from "./pages/SignupPage.jsx";
 import LoginPage from "./pages/LoginPage";
 import ProfilePage from "./pages/ProfilePage";
+import RoomPage from "./pages/RoomPage";
 import Layout from "./pages/Layout";
 import ListingsPage from "./pages/ListingsPage";
+import IsPrivate from './components/IsPrivate';
+import IsAnonymous from './components/IsAnonymous'
 
 function App() {
   return (
     <div className="App">
       <Routes>
+        <Route path="/" element={<HomePage />} />
         <Route path="" element={<Layout />}>
+
           <Route path="/" element={<HomePage />} />
-          <Route path="/signup" element={<SignupPage />} />
-          <Route path="/login" element={<LoginPage />} />
-          <Route path="/profile" element={<ProfilePage />} />
-          <Route path="/listings" element={<ListingsPage />} />
+          <Route path="/signup" element=
+          {
+            <IsAnonymous>
+            <SignupPage />
+            </IsAnonymous> 
+          } />
+
+          <Route path="/login" element=
+          {
+          <IsAnonymous>
+          <LoginPage />
+          </IsAnonymous> 
+          } />
+          <Route path="/profile" element=
+          {
+          <IsPrivate>
+          <ProfilePage />
+          </IsPrivate>
+          } />
+          <Route path="/listings" element=
+          {
+          <IsPrivate>
+          <ListingsPage />
+          </IsPrivate>
+          } />
+          <Route path="/roompage/:id" element=
+          {
+          <IsPrivate>
+          <RoomPage />
+          </IsPrivate>
+          } />
+
         </Route>
       </Routes>
     </div>

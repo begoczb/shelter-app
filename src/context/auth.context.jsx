@@ -60,7 +60,6 @@ const AuthContextWrapper = ({ children }) => {
 
         // console.log(`this is the payload`, response.data.payload);
         setUser({ name: firstName, userType: type });
-        
         // console.log(user);
         setIsLoggedIn(true);
         setIsLoading(false);
