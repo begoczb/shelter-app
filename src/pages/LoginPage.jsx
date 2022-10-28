@@ -26,7 +26,7 @@ const LoginPage = () => {
   });
 
   const navigate = useNavigate();
-  const { storeToken, authenticateUser } = useContext(AuthContext);
+  const { storeToken, authenticateUser, setType } = useContext(AuthContext);
 
   const handleEmail = (e) => setEmail(e.target.value);
   const handleChange = (prop) => (e) => {

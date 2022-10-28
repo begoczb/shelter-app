@@ -33,6 +33,7 @@ const ProfilePage = () => {
     <>
       <main>
         <h3>Hello {user.name} </h3>
+        <h4>{user.userType}</h4>
         <div>
           <span>{hostInfo.firstName}</span>
           <span>{hostInfo.lastName}</span>

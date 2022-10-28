@@ -11,13 +11,16 @@ const AuthContextWrapper = ({ children }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [user, setUser] = useState({});
+ 
 
   const navigate = useNavigate();
+
 
   const storeToken = (token) => {
     localStorage.setItem("authToken", token);
   };
 
+  
   const removeToken = () => {
     localStorage.removeItem("authToken");
   };
@@ -53,10 +56,11 @@ const AuthContextWrapper = ({ children }) => {
       },
     })
       .then((response) => {
-        const { email, firstName } = response.data.payload;
+        const { email, firstName, type } = response.data.payload;
 
         // console.log(`this is the payload`, response.data.payload);
-        setUser({ name: firstName });
+        setUser({ name: firstName, userType: type });
+        
         // console.log(user);
         setIsLoggedIn(true);
         setIsLoading(false);
@@ -81,7 +85,8 @@ const AuthContextWrapper = ({ children }) => {
         removeToken,
         authenticateUser,
         logOutUser,
-        getToken,
+        getToken
+        
       }}
     >
       {children}
