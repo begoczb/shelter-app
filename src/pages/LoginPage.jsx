@@ -26,7 +26,7 @@ const LoginPage = () => {
   });
 
   const navigate = useNavigate();
-  const { storeToken, authenticateUser } = useContext(AuthContext);
+  const { storeToken, authenticateUser, user } = useContext(AuthContext);
 
   const handleEmail = (e) => setEmail(e.target.value);
   const handleChange = (prop) => (e) => {
@@ -50,13 +50,17 @@ const LoginPage = () => {
     axios
       .post(`${baseURL}auth/login`, requestBody)
       .then((response) => {
-        console.log("JWT token", response.data.authToken);
+        // console.log("JWT token", response.data.authToken);
 
         storeToken(response.data.authToken);
+        const getUserPayload = async () => {
+          await authenticateUser();
 
-        authenticateUser();
-
-        navigate("/");
+          user.userType === "host"
+            ? navigate("/profile")
+            : navigate("/listings");
+        };
+        getUserPayload();
       })
       .catch((error) => {
         console.log(error);

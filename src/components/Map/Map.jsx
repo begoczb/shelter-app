@@ -9,6 +9,7 @@ import throttle from "lodash/throttle";
 import { useEffect } from "react";
 import { Autocomplete, Box, Grid, TextField, Typography } from "@mui/material";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
+import { getBoundsZoomLevel } from "../../utils/helperFunction";
 
 const containerStyle = {
   width: "100vw",
@@ -20,17 +21,21 @@ const center = {
   lng: 2.352222,
 };
 
-const Map = () => {
-  const { isLoaded } = useJsApiLoader({
-    id: "google-map-script",
-    googleMapsApiKey: API_KEY,
-  });
-
+const Map = ({ isLoaded }) => {
   const [map, setMap] = useState(null);
 
   const onLoad = useCallback((map) => {
-    const bounds = new window.google.maps.LatLngBounds(center);
-    map.fitBounds(bounds);
+    // const bounds = new window.google.maps.LatLngBounds(center);
+    // console.log(bounds);
+    // const dim = { height: 0, width: 0 };
+    // dim.width = window.innerWidth;
+    // dim.height = window.innerHeight / 2;
+    // const newZoom = getBoundsZoomLevel(bounds, dim);
+
+    // map.fitBounds(bounds);
+    map.setCenter(center);
+    map.setZoom(15);
+
     setMap(map);
   }, []);
 
@@ -41,8 +46,8 @@ const Map = () => {
   return isLoaded ? (
     <GoogleMap
       mapContainerStyle={containerStyle}
+      // zoom={zoom}
       center={center}
-      zoom={15}
       onLoad={onLoad}
       onUnmount={onUnmount}
       clickableIcons={false}
