@@ -21,18 +21,15 @@ const center = {
   lng: 2.352222,
 };
 
-const Map = ({ isLoaded }) => {
+const Map = ({ isLoaded, location }) => {
   const [map, setMap] = useState(null);
+  const [centerSearch, setCenterSearch] = useState(center);
+
+  useEffect(() => {
+    setCenterSearch(location);
+  }, [location]);
 
   const onLoad = useCallback((map) => {
-    // const bounds = new window.google.maps.LatLngBounds(center);
-    // console.log(bounds);
-    // const dim = { height: 0, width: 0 };
-    // dim.width = window.innerWidth;
-    // dim.height = window.innerHeight / 2;
-    // const newZoom = getBoundsZoomLevel(bounds, dim);
-
-    // map.fitBounds(bounds);
     map.setCenter(center);
     map.setZoom(15);
 
@@ -47,7 +44,7 @@ const Map = ({ isLoaded }) => {
     <GoogleMap
       mapContainerStyle={containerStyle}
       // zoom={zoom}
-      center={center}
+      center={centerSearch}
       onLoad={onLoad}
       onUnmount={onUnmount}
       clickableIcons={false}
