@@ -23,11 +23,10 @@ function loadScript(src, position, id) {
 const autocompleteService = { current: null };
 let service = null;
 
-const AddressInput = ({ handleAddress, status }) => {
+const AddressInput = ({ handleAddress, status, handleLocation }) => {
   const [value, setValue] = useState(null);
   const [inputValue, setInputValue] = useState("");
   const [options, setOptions] = useState([]);
-  const [placeId, setPlaceId] = useState("");
   const loaded = useRef(false);
 
   if (typeof window !== "undefined" && !loaded.current) {
@@ -71,7 +70,6 @@ const AddressInput = ({ handleAddress, status }) => {
     fetch({ input: inputValue }, (results) => {
       if (active) {
         let newOptions = [];
-        let newPlacesIds = [];
 
         if (value) {
           newOptions = [value];
@@ -80,12 +78,9 @@ const AddressInput = ({ handleAddress, status }) => {
         if (results) {
           // console.log(results);
 
-          newPlacesIds = results.map((item) => item.place_id);
-
           newOptions = [...newOptions, ...results];
         }
 
-        setPlaceId(newPlacesIds);
         setOptions(newOptions);
       }
     });
@@ -115,6 +110,7 @@ const AddressInput = ({ handleAddress, status }) => {
           setOptions(newValue ? [newValue, ...options] : options);
           setValue(newValue);
           status && newValue && handleAddress(newValue);
+          !status && newValue && handleLocation(newValue);
         }}
         onInputChange={(event, newInputValue) => {
           setInputValue(newInputValue);
