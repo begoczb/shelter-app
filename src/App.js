@@ -15,7 +15,9 @@ function App() {
   return (
     <div className="App">
       <Routes>
+        <Route path="/" element={<HomePage />} />
         <Route path="" element={<Layout />}>
+
           <Route path="/" element={<HomePage />} />
           <Route path="/signup" element=
           {
@@ -48,6 +50,7 @@ function App() {
           <RoomPage />
           </IsPrivate>
           } />
+
         </Route>
       </Routes>
     </div>

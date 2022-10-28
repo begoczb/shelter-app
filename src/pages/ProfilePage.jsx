@@ -32,7 +32,9 @@ const ProfilePage = () => {
   return (
     <>
       <main>
-        <h3>Hello {user.name} </h3>
+        <h3>
+          Hello {user.name} {user.userType}
+        </h3>
         <div>
           <span>{hostInfo.firstName}</span>
           <span>{hostInfo.lastName}</span>

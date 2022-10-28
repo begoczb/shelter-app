@@ -8,8 +8,7 @@ import throttle from "lodash/throttle";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 
 import { Autocomplete, Box, Grid, TextField, Typography } from "@mui/material";
-
-//autocomplete stuff
+import axios from "axios";
 
 function loadScript(src, position, id) {
   if (!position) {
@@ -22,11 +21,13 @@ function loadScript(src, position, id) {
   position.appendChild(script);
 }
 const autocompleteService = { current: null };
+let service = null;
 
-const AddressInput = ({ handleAddress }) => {
+const AddressInput = ({ handleAddress, status }) => {
   const [value, setValue] = useState(null);
   const [inputValue, setInputValue] = useState("");
   const [options, setOptions] = useState([]);
+  const [placeId, setPlaceId] = useState("");
   const loaded = useRef(false);
 
   if (typeof window !== "undefined" && !loaded.current) {
@@ -70,15 +71,21 @@ const AddressInput = ({ handleAddress }) => {
     fetch({ input: inputValue }, (results) => {
       if (active) {
         let newOptions = [];
+        let newPlacesIds = [];
 
         if (value) {
           newOptions = [value];
         }
 
         if (results) {
+          // console.log(results);
+
+          newPlacesIds = results.map((item) => item.place_id);
+
           newOptions = [...newOptions, ...results];
         }
 
+        setPlaceId(newPlacesIds);
         setOptions(newOptions);
       }
     });
@@ -91,6 +98,7 @@ const AddressInput = ({ handleAddress }) => {
   return (
     <>
       <Autocomplete
+        // margin="normal"
         disablePortal
         id="google-map-demo"
         getOptionLabel={(option) =>
@@ -106,7 +114,7 @@ const AddressInput = ({ handleAddress }) => {
         onChange={(event, newValue) => {
           setOptions(newValue ? [newValue, ...options] : options);
           setValue(newValue);
-          handleAddress(newValue);
+          status && newValue && handleAddress(newValue);
         }}
         onInputChange={(event, newInputValue) => {
           setInputValue(newInputValue);
