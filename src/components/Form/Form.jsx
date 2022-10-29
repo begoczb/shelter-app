@@ -11,12 +11,11 @@ import axios from "axios";
 import "./Form.css";
 import { useContext } from "react";
 import { AuthContext } from "../../context/auth.context";
-import { TryRounded } from "@mui/icons-material";
 import AddressInput from "../AddressInput/AddressInput";
 
 const baseURL = API_URL;
 
-const Form = () => {
+const Form = ({handleClose}) => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [address, setAddress] = useState({});
@@ -26,28 +25,37 @@ const Form = () => {
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
 
-  const [errorMessage, setErrorMessage] = useState(undefined);
+  const handleTitle = (e) => setTitle(e.target.value);
+  const handleDescription = (e) => setDescription(e.target.value);
+  const handleGuests = (e) => setGuests(e.target.value);
+  const handleStartDate = (e) => setStartDate(e.target.value);
+  const handleEndDate = (e) => setEndDate(e.target.value);
 
   const handleAddress = (newAddress) => {
     const { description, place_id } = newAddress;
     setAddress({ description, place_id });
   };
 
-  const handleTitle = (e) => setTitle(e.target.value);
-  const handleDescription = (e) => setDescription(e.target.value);
+  const handleCheckbox = (type) => {
+    if (type === "gender") {
+      gender ? setGender(false) : setGender(true);
+    } else {
+      pet ? setPet(false) : setPet(true);
+    }
+  };
 
-  const handleGuests = (e) => setGuests(e.target.value);
-  const handleStartDate = (e) => setStartDate(e.target.value);
-  const handleEndDate = (e) => setEndDate(e.target.value);
-  // console.log(startDate);
+  const addDays = (date, days) => {
+    var result = new Date(date);
+    result.setDate(result.getDate() + days);
+    return result;
+  }
 
   const { getToken } = useContext(AuthContext);
 
   const handleAddRoom = (e) => {
+
     e.preventDefault();
     const token = getToken();
-    // console.log(address.geometry.location.lat);
-
     axios({
       url: `room`,
       baseURL: API_URL,
@@ -66,7 +74,8 @@ const Form = () => {
     })
       .then((response) => {
         console.log(response.data);
-        // navigate("/login");
+        handleClose();
+
       })
       .catch((error) => {
         console.log(error);
@@ -75,20 +84,7 @@ const Form = () => {
       });
   };
 
-  const handleCheckbox = (type) => {
-    if (type === "gender") {
-      gender ? setGender(false) : setGender(true);
-    } else {
-      pet ? setPet(false) : setPet(true);
-    }
-  };
-
   const date = new Date();
-  function addDays(date, days) {
-    var result = new Date(date);
-    result.setDate(result.getDate() + days);
-    return result;
-  }
 
   return (
     <>
