@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 import { AuthContext } from "../context/auth.context";
-import BasicModal from "../components/BasicModal";
+import BasicModal from "../components/Modal";
 import { useEffect } from "react";
 import axios from "axios";
 import { API_URL } from "../utils/constants";
