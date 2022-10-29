@@ -48,7 +48,7 @@ const ProfilePage = () => {
             ))}
           </ul>
         </div>
-        <BasicModal />
+        <BasicModal hostRooms={hostRooms} setHostRooms={setHostRooms}/>
       </main>
     </>
   );

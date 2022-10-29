@@ -21,7 +21,7 @@ const style = {
   p: 4,
 };
 
-export default function BasicModal() {
+export default function BasicModal({hostRooms, setHostRooms}) {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -39,7 +39,7 @@ export default function BasicModal() {
           <Typography id="modal-modal-title" variant="h6" component="h2">
             Add Room
           </Typography>
-          <Form handleClose={handleClose}/>
+          <Form handleClose={handleClose} hostRooms={hostRooms} setHostRooms={setHostRooms}/>
         </Box>
       </Modal>
     </Container>

@@ -15,7 +15,7 @@ import AddressInput from "../AddressInput/AddressInput";
 
 const baseURL = API_URL;
 
-const Form = ({handleClose}) => {
+const Form = ({handleClose, hostRooms, setHostRooms}) => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [address, setAddress] = useState({});
@@ -73,8 +73,8 @@ const Form = ({handleClose}) => {
       },
     })
       .then((response) => {
-        console.log(response.data);
         handleClose();
+        setHostRooms([...hostRooms, response.data]);
 
       })
       .catch((error) => {
