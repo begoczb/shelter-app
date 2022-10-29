@@ -9,13 +9,13 @@ import { AuthContext } from "../context/auth.context";
 import { ListingsContext } from "../context/listings.context";
 
 import { API_KEY, API_URL } from "../utils/constants";
+import ListingThumbnail from "../components/ListingThumbnail";
 
 const places = ["places"];
 
 const ListingsPage = () => {
   const [location, setLocation] = useState(null);
   const [placeId, setPlaceId] = useState("");
-  const [allListings, setAllListings] = useState(null);
 
   const { setListings, listings } = useContext(ListingsContext);
 
@@ -41,11 +41,12 @@ const ListingsPage = () => {
         headers: { Authorization: `Bearer ${token}` },
       });
 
-      // console.log(data);
-      setListings(data);
+      console.log(data);
+      setListings([...data]);
     };
 
     getAllListings();
+    // console.log(`All listings:`, listings);
   }, []);
 
   useEffect(() => {
@@ -70,10 +71,13 @@ const ListingsPage = () => {
     }
   }, [placeId]);
 
-  return isLoaded ? (
+  return isLoaded && listings ? (
     <main>
       <AddressInput status={false} handleLocation={handleLocation} />
       <Map location={location} />
+      {listings.map((listing) => (
+        <ListingThumbnail key={listing._id} listing={listing} />
+      ))}
     </main>
   ) : (
     <></>
