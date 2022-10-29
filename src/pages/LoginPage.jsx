@@ -29,7 +29,6 @@ const LoginPage = () => {
 
   const { storeToken, authenticateUser, user } = useContext(AuthContext);
 
-
   const handleEmail = (e) => setEmail(e.target.value);
   const handleChange = (prop) => (e) => {
     setValues({ ...values, [prop]: e.target.value });
@@ -55,14 +54,10 @@ const LoginPage = () => {
         // console.log("JWT token", response.data.authToken);
 
         storeToken(response.data.authToken);
-        const getUserPayload = async () => {
-          await authenticateUser();
 
-          user.userType === "host"
-            ? navigate("/profile")
-            : navigate("/listings");
-        };
-        getUserPayload();
+        authenticateUser();
+
+        navigate("/listings");
       })
       .catch((error) => {
         console.log(error);
