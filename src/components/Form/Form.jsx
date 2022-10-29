@@ -122,7 +122,8 @@ const Form = ({handleClose, hostRooms, setHostRooms}) => {
             InputLabelProps={{
               shrink: true,
             }}
-            placeholder="0"
+            placeholder="1"
+            min="1"
             value={guests}
             onChange={handleGuests}
           />
