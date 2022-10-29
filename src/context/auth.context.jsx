@@ -11,16 +11,13 @@ const AuthContextWrapper = ({ children }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [user, setUser] = useState({});
- 
 
   const navigate = useNavigate();
-
 
   const storeToken = (token) => {
     localStorage.setItem("authToken", token);
   };
 
-  
   const removeToken = () => {
     localStorage.removeItem("authToken");
   };
@@ -84,8 +81,7 @@ const AuthContextWrapper = ({ children }) => {
         removeToken,
         authenticateUser,
         logOutUser,
-        getToken
-        
+        getToken,
       }}
     >
       {children}

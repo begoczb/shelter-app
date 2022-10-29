@@ -15,24 +15,31 @@ const buttonStyle = {
   height: "60px",
   position: "absolute",
   backgroundColor: "#FFFFFF",
+  zIndex: "1",
   boxShadow:
     "2px 2px 4px rgba(0, 0, 0, 0.25), inset 2px 2px 10px rgba(0, 0, 0, 0.25)",
   borderRadius: "25px",
   color: "black",
+  "&:hover": {
+    backgroundColor: "lightgray",
+  },
 };
 
 const buttonPos1 = {
-  left: "75px",
+  left: "50%",
+  transform: "translate(-50%)",
   top: "290px",
 };
 
 const buttonPos2 = {
-  left: "75px",
+  left: "50%",
+  transform: "translate(-50%)",
   top: "432px",
 };
 
 const buttonPos3 = {
-  left: "75px",
+  left: "50%",
+  transform: "translate(-50%)",
   top: "573px",
 };
 
@@ -52,7 +59,8 @@ const titleStyle = {
   position: "absolute",
   width: "270px",
   height: "44px",
-  left: "60px",
+  left: "50%",
+  transform: "translate(-50%)",
   top: "159px",
 
   // fontFamily: "Aclonica",
@@ -80,12 +88,14 @@ const descriptionTextStyle = {
 };
 
 const textPos1 = {
-  left: "75px",
+  left: "50%",
+  transform: "translate(-50%)",
   top: "260px",
 };
 
 const textPos2 = {
-  left: "75px",
+  left: "50%",
+  transform: "translate(-50%)",
   top: "402px",
 };
 
@@ -93,7 +103,8 @@ const imageStyle = {
   position: "absolute",
   width: "390px",
   height: "390px",
-  left: " 1px",
+  left: "50%",
+  transform: "translate(-50%)",
   top: "603px",
 
   background: `url("${image}")`,

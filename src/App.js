@@ -8,49 +8,63 @@ import ProfilePage from "./pages/ProfilePage";
 import RoomPage from "./pages/RoomPage";
 import Layout from "./pages/Layout";
 import ListingsPage from "./pages/ListingsPage";
-import IsPrivate from './components/IsPrivate';
-import IsAnonymous from './components/IsAnonymous'
+import IsPrivate from "./components/IsPrivate";
+import IsAnonymous from "./components/IsAnonymous";
 
 function App() {
   return (
     <div className="App">
       <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="" element={<Layout />}>
-
-          <Route path="/" element={<HomePage />} />
-          <Route path="/signup" element=
-          {
+        <Route
+          path="/"
+          element={
             <IsAnonymous>
-            <SignupPage />
-            </IsAnonymous> 
-          } />
+              <HomePage />
+            </IsAnonymous>
+          }
+        />
+        <Route path="" element={<Layout />}>
+          <Route
+            path="/signup"
+            element={
+              <IsAnonymous>
+                <SignupPage />
+              </IsAnonymous>
+            }
+          />
 
-          <Route path="/login" element=
-          {
-          <IsAnonymous>
-          <LoginPage />
-          </IsAnonymous> 
-          } />
-          <Route path="/profile" element=
-          {
-          <IsPrivate>
-          <ProfilePage />
-          </IsPrivate>
-          } />
-          <Route path="/listings" element=
-          {
-          <IsPrivate>
-          <ListingsPage />
-          </IsPrivate>
-          } />
-          <Route path="/roompage/:id" element=
-          {
-          <IsPrivate>
-          <RoomPage />
-          </IsPrivate>
-          } />
-
+          <Route
+            path="/login"
+            element={
+              <IsAnonymous>
+                <LoginPage />
+              </IsAnonymous>
+            }
+          />
+          <Route
+            path="/profile"
+            element={
+              <IsPrivate>
+                <ProfilePage />
+              </IsPrivate>
+            }
+          />
+          <Route
+            path="/listings"
+            element={
+              <IsPrivate>
+                <ListingsPage />
+              </IsPrivate>
+            }
+          />
+          <Route
+            path="/roompage/:id"
+            element={
+              <IsPrivate>
+                <RoomPage />
+              </IsPrivate>
+            }
+          />
         </Route>
       </Routes>
     </div>
