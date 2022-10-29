@@ -32,7 +32,6 @@ const ProfilePage = () => {
   return (
     <>
       <main>
-
         <h3>Hello {user.name} </h3>
         <h4>{user.userType}</h4>
 
