@@ -10,6 +10,7 @@ import { ListingsContext } from "../context/listings.context";
 
 import { API_KEY, API_URL } from "../utils/constants";
 import ListingThumbnail from "../components/ListingThumbnail";
+import { Container } from "@mui/system";
 
 const places = ["places"];
 
@@ -75,9 +76,19 @@ const ListingsPage = () => {
     <main>
       <AddressInput status={false} handleLocation={handleLocation} />
       <Map location={location} />
-      {listings.map((listing) => (
-        <ListingThumbnail key={listing._id} listing={listing} />
-      ))}
+      <Container
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+          alignItems: "center",
+          alignContent: "center",
+        }}
+      >
+        {listings.map((listing) => (
+          <ListingThumbnail key={listing._id} listing={listing} />
+        ))}
+      </Container>
     </main>
   ) : (
     <></>
