@@ -5,12 +5,15 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter } from "react-router-dom";
 import { AuthContextWrapper } from "./context/auth.context";
+import { ListingsContextWrapper } from "./context/listings.context";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <BrowserRouter>
     <AuthContextWrapper>
-      <App />
+      <ListingsContextWrapper>
+        <App />
+      </ListingsContextWrapper>
     </AuthContextWrapper>
   </BrowserRouter>
 );
