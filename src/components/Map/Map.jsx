@@ -23,10 +23,12 @@ const center = {
 
 const Map = ({ isLoaded, location }) => {
   const [map, setMap] = useState(null);
-  const [centerSearch, setCenterSearch] = useState(center);
+  const [centerSearch, setCenterSearch] = useState(null);
 
   useEffect(() => {
-    setCenterSearch(location);
+    if (location) {
+      setCenterSearch(location);
+    }
   }, [location]);
 
   const onLoad = useCallback((map) => {
@@ -40,18 +42,16 @@ const Map = ({ isLoaded, location }) => {
     setMap(null);
   }, []);
 
-  return isLoaded ? (
+  return (
     <GoogleMap
       mapContainerStyle={containerStyle}
       // zoom={zoom}
-      center={centerSearch}
+      center={centerSearch ? centerSearch : center}
       onLoad={onLoad}
       onUnmount={onUnmount}
       clickableIcons={false}
       options={{ streetViewControl: false, disableDefaultUI: false }}
     ></GoogleMap>
-  ) : (
-    <></>
   );
 };
 
