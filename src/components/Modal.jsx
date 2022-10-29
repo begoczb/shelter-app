@@ -39,7 +39,7 @@ export default function BasicModal() {
           <Typography id="modal-modal-title" variant="h6" component="h2">
             Add Room
           </Typography>
-          <Form />
+          <Form handleClose={handleClose}/>
         </Box>
       </Modal>
     </Container>
