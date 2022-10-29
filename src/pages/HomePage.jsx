@@ -89,13 +89,13 @@ const descriptionTextStyle = {
 
 const textPos1 = {
   left: "50%",
-  transform: "translate(-50%)",
+  transform: "translate(-90%)",
   top: "260px",
 };
 
 const textPos2 = {
   left: "50%",
-  transform: "translate(-50%)",
+  transform: "translate(-80%)",
   top: "402px",
 };
 

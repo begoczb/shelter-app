@@ -23,7 +23,7 @@ function loadScript(src, position, id) {
 const autocompleteService = { current: null };
 let service = null;
 
-const AddressInput = ({ handleAddress, status, handleLocation }) => {
+const AddressInput = ({ handleAddress, status, handleLocation, isLoaded }) => {
   const [value, setValue] = useState(null);
   const [inputValue, setInputValue] = useState("");
   const [options, setOptions] = useState([]);
@@ -110,7 +110,7 @@ const AddressInput = ({ handleAddress, status, handleLocation }) => {
           setOptions(newValue ? [newValue, ...options] : options);
           setValue(newValue);
           status && newValue && handleAddress(newValue);
-          !status && newValue && handleLocation(newValue);
+          !status && newValue && handleLocation(newValue.place_id);
         }}
         onInputChange={(event, newInputValue) => {
           setInputValue(newInputValue);

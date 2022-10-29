@@ -10,12 +10,12 @@ import axios from "axios";
 const places = ["places"];
 
 const ListingsPage = () => {
-  const [location, setLocation] = useState({});
+  const [location, setLocation] = useState(null);
   const [placeId, setPlaceId] = useState("");
   const { getToken } = useContext(AuthContext);
 
   const { isLoaded } = useJsApiLoader({
-    id: "google-map-script",
+    id: "google-maps",
     googleMapsApiKey: API_KEY,
     libraries: places,
   });
@@ -25,27 +25,38 @@ const ListingsPage = () => {
   };
 
   useEffect(() => {
-    const getLocationLatLng = async () => {
-      const token = getToken();
-      const { data } = await axios({
-        method: "patch",
-        baseURL: API_URL,
-        data: placeId,
-        url: "guest",
-        headers: { Authorization: `Bearer ${token}` },
-      });
+    if (placeId) {
+      console.log(placeId);
+      const request = { placeId: placeId };
+      const getLocationLatLng = async () => {
+        const token = getToken();
+        const { data } = await axios({
+          method: "patch",
+          baseURL: API_URL,
+          data: request,
+          url: "guest",
+          headers: { Authorization: `Bearer ${token}` },
+        });
+        // console.log(data);
 
-      setLocation(data.location);
-    };
+        setLocation(data.location);
+      };
 
-    getLocationLatLng();
+      getLocationLatLng();
+    }
   }, [placeId]);
 
-  return (
+  return isLoaded ? (
     <main>
-      <AddressInput status={false} handleLocation={handleLocation} />
-      <Map isLoaded={isLoaded} location={location} />
+      <AddressInput
+        status={false}
+        handleLocation={handleLocation}
+        isLoaded={isLoaded}
+      />
+      <Map location={location} />
     </main>
+  ) : (
+    <></>
   );
 };
 
