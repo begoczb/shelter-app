@@ -1,5 +1,5 @@
 import { GoogleMap, LoadScript, useJsApiLoader } from "@react-google-maps/api";
-import React, { useRef, useState } from "react";
+import React, { useContext, useRef, useState } from "react";
 import { useCallback } from "react";
 import { API_KEY } from "../../utils/constants";
 import { Marker } from "@react-google-maps/api";
@@ -10,6 +10,7 @@ import { useEffect } from "react";
 import { Autocomplete, Box, Grid, TextField, Typography } from "@mui/material";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import { getBoundsZoomLevel } from "../../utils/helperFunction";
+import { ListingsContext } from "../../context/listings.context";
 
 const containerStyle = {
   width: "100vw",
@@ -21,10 +22,12 @@ const center = {
   lng: 2.352222,
 };
 
-const Map = ({ isLoaded, location }) => {
+const Map = ({ location }) => {
   const [map, setMap] = useState(null);
   const [centerSearch, setCenterSearch] = useState(null);
 
+  const { listings } = useContext(ListingsContext);
+  console.log(listings);
   useEffect(() => {
     if (location) {
       setCenterSearch(location);
@@ -51,7 +54,14 @@ const Map = ({ isLoaded, location }) => {
       onUnmount={onUnmount}
       clickableIcons={false}
       options={{ streetViewControl: false, disableDefaultUI: false }}
-    ></GoogleMap>
+    >
+      {listings.map((elem) => (
+        <Marker
+          key={elem._id}
+          position={{ lat: elem.address.lat, lng: elem.address.lng }}
+        />
+      ))}
+    </GoogleMap>
   );
 };
 

@@ -1,17 +1,24 @@
+import React, { useEffect, useState, useContext } from "react";
+import axios from "axios";
 import { useJsApiLoader } from "@react-google-maps/api";
-import React, { useEffect, useState } from "react";
-import { useContext } from "react";
+
 import AddressInput from "../components/AddressInput/AddressInput";
 import Map from "../components/Map/Map";
-import { API_KEY, API_URL } from "../utils/constants";
+
 import { AuthContext } from "../context/auth.context";
-import axios from "axios";
+import { ListingsContext } from "../context/listings.context";
+
+import { API_KEY, API_URL } from "../utils/constants";
 
 const places = ["places"];
 
 const ListingsPage = () => {
   const [location, setLocation] = useState(null);
   const [placeId, setPlaceId] = useState("");
+  const [allListings, setAllListings] = useState(null);
+
+  const { setListings, listings } = useContext(ListingsContext);
+
   const { getToken } = useContext(AuthContext);
 
   const { isLoaded } = useJsApiLoader({
@@ -25,8 +32,25 @@ const ListingsPage = () => {
   };
 
   useEffect(() => {
+    const getAllListings = async () => {
+      const token = getToken();
+      const { data } = await axios({
+        method: "get",
+        baseURL: API_URL,
+        url: "room",
+        headers: { Authorization: `Bearer ${token}` },
+      });
+
+      // console.log(data);
+      setListings(data);
+    };
+
+    getAllListings();
+  }, []);
+
+  useEffect(() => {
     if (placeId) {
-      console.log(placeId);
+      // console.log(placeId);
       const request = { placeId: placeId };
       const getLocationLatLng = async () => {
         const token = getToken();
@@ -48,11 +72,7 @@ const ListingsPage = () => {
 
   return isLoaded ? (
     <main>
-      <AddressInput
-        status={false}
-        handleLocation={handleLocation}
-        isLoaded={isLoaded}
-      />
+      <AddressInput status={false} handleLocation={handleLocation} />
       <Map location={location} />
     </main>
   ) : (
