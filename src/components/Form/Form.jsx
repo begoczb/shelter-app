@@ -13,9 +13,9 @@ import { useContext } from "react";
 import { AuthContext } from "../../context/auth.context";
 import AddressInput from "../AddressInput/AddressInput";
 
-const baseURL = API_URL;
+// const baseURL = API_URL;
 
-const Form = ({handleClose}) => {
+const Form = ({handleClose, hostRooms, setHostRooms}) => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [address, setAddress] = useState({});
@@ -73,8 +73,8 @@ const Form = ({handleClose}) => {
       },
     })
       .then((response) => {
-        console.log(response.data);
         handleClose();
+        setHostRooms([...hostRooms, response.data]);
 
       })
       .catch((error) => {
@@ -122,7 +122,8 @@ const Form = ({handleClose}) => {
             InputLabelProps={{
               shrink: true,
             }}
-            placeholder="0"
+            placeholder="1"
+            InputProps={{ inputProps: { min: "1", max: "10", step: "1" } }}
             value={guests}
             onChange={handleGuests}
           />
