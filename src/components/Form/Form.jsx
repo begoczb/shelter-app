@@ -13,7 +13,7 @@ import { useContext } from "react";
 import { AuthContext } from "../../context/auth.context";
 import AddressInput from "../AddressInput/AddressInput";
 
-const baseURL = API_URL;
+// const baseURL = API_URL;
 
 const Form = ({handleClose, hostRooms, setHostRooms}) => {
   const [title, setTitle] = useState("");
@@ -123,7 +123,7 @@ const Form = ({handleClose, hostRooms, setHostRooms}) => {
               shrink: true,
             }}
             placeholder="1"
-            min="1"
+            InputProps={{ inputProps: { min: "1", max: "10", step: "1" } }}
             value={guests}
             onChange={handleGuests}
           />
