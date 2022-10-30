@@ -58,7 +58,7 @@ function App() {
             }
           />
           <Route
-            path="/roompage/:id"
+            path="/room/:id"
             element={
               <IsPrivate>
                 <RoomPage />

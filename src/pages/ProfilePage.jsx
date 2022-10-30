@@ -43,7 +43,9 @@ const ProfilePage = () => {
           <ul>
             {hostRooms.map((elem) => (
               <li key={elem._id}>
-                <Link to={elem._id}>{elem.title}</Link>
+
+                <Link to={`/room/${elem._id}`} state={{ hostInfo: hostInfo, roomInfo: elem }}>{elem.title}</Link>{" "}
+
               </li>
             ))}
           </ul>
