@@ -6,6 +6,7 @@ import axios from "axios";
 import { API_URL } from "../utils/constants";
 import { Link } from "react-router-dom";
 import { backgroundStyleGen } from "../utils/globalStyles";
+import ListingThumbnail from "../components/ListingThumbnail";
 
 const ProfilePage = () => {
   const { user, getToken } = useContext(AuthContext);
@@ -40,17 +41,19 @@ const ProfilePage = () => {
           <span>{hostInfo.firstName}</span>
           <span>{hostInfo.lastName}</span>
           <span>{hostInfo.email}</span>
+          <BasicModal hostRooms={hostRooms} setHostRooms={setHostRooms} />
           <ul>
             {hostRooms.map((elem) => (
-              <li key={elem._id}>
-
-                <Link to={`/room/${elem._id}`} state={{ hostInfo: hostInfo, roomInfo: elem }}>{elem.title}</Link>{" "}
-
-              </li>
+              <Link
+                key={elem._id}
+                to={`/room/${elem._id}`}
+                state={{ hostInfo: hostInfo, roomInfo: elem }}
+              >
+                <ListingThumbnail listing={elem} />
+              </Link>
             ))}
           </ul>
         </div>
-        <BasicModal hostRooms={hostRooms} setHostRooms={setHostRooms} />
       </main>
     </>
   );
