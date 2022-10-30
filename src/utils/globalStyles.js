@@ -21,4 +21,15 @@ const backgroundStyleGen = {
   color: "white",
 };
 
-export { backgroundStyleHome, backgroundStyleGen };
+const yellowButtonStyle = {
+  width: "5.9rem",
+  height: "2rem",
+  fontSize: "1rem",
+  color: "black",
+  background: "#FFD900",
+  boxShadow:
+    "2px 2px 4px rgba(0, 0, 0, 0.25), inset 2px 2px 10px rgba(0, 0, 0, 0.25)",
+  borderRadius: "15px",
+};
+
+export { backgroundStyleHome, backgroundStyleGen, yellowButtonStyle };

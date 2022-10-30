@@ -17,7 +17,7 @@ const searchBarStyle = {
   left: "25px",
   top: "90px",
 
-  background: "#FFFFFF",
+  background: "white",
   boxShadow: "2px 2px 4px rgba(0, 0, 0, 0.25)",
   borderRadius: "15px",
 };
@@ -106,7 +106,52 @@ const AddressInput = ({ handleAddress, status, handleLocation }) => {
     <>
       <Autocomplete
         // margin="normal"
-        sx={status ? { width: "100%" } : { searchBarStyle }}
+        sx={
+          status
+            ? { width: "100%" }
+            : {
+                ".css-154xyx0-MuiInputBase-root-MuiOutlinedInput-root": {
+                  // position: "absolute",
+                  width: " 221px",
+                  height: "1rem",
+                  // left: "25px",
+                  // top: "90px",
+                  background: "white",
+                  boxShadow: "2px 2px 4px rgba(0, 0, 0, 0.25)",
+                  borderRadius: "15px",
+                  border: "none",
+                  padding: "1rem",
+                  textAlign: "center",
+                },
+                ".css-14s5rfu-MuiFormLabel-root-MuiInputLabel-root": {
+                  fontSize: "1rem",
+                  top: "-10px",
+                },
+                "#google-map-demo": {
+                  position: "absolute",
+                  width: " 100%",
+
+                  top: "-3px",
+                },
+                "& label.Mui-focused": {
+                  color: "black",
+                },
+                "& .MuiInput-underline:after": {
+                  borderBottomColor: "#FFD900",
+                },
+                "& .MuiOutlinedInput-root": {
+                  "& fieldset": {
+                    borderColor: "#FFD900",
+                  },
+                  "&:hover fieldset": {
+                    borderColor: "#FFD900",
+                  },
+                  "&.Mui-focused fieldset": {
+                    borderColor: "#FFD900",
+                  },
+                },
+              }
+        }
         disablePortal
         id="google-map-demo"
         getOptionLabel={(option) =>
