@@ -5,6 +5,7 @@ import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import Form from "./Form/Form.jsx";
 import { Container } from "@mui/material";
+import { yellowButtonStyle } from "../utils/globalStyles.js";
 
 const style = {
   position: "absolute",
@@ -28,7 +29,9 @@ export default function BasicModal({ hostRooms, setHostRooms }) {
 
   return (
     <Container>
-      <Button onClick={handleOpen}>ADD ROOM</Button>
+      <Button onClick={handleOpen} sx={yellowButtonStyle}>
+        Add new listing
+      </Button>
       <Modal
         open={open}
         onClose={handleClose}

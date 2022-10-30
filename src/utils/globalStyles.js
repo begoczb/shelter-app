@@ -22,7 +22,7 @@ const backgroundStyleGen = {
 };
 
 const yellowButtonStyle = {
-  width: "5.9rem",
+  //   width: "5.9rem",
   height: "2rem",
   fontSize: "1rem",
   color: "black",
