@@ -12,8 +12,8 @@ const listingThumbStyle = {
   display: "flex",
   paddingLeft: "0",
   paddingRight: "0.5rem",
-  minWidth: "100%",
-  maxWidth: "100%",
+  minWidth: "100vw",
+  maxWidth: "100vw",
 };
 
 const textStyle = {
@@ -22,6 +22,15 @@ const textStyle = {
   fontWeight: 400,
   fontSize: "1rem",
   lineHeight: "17px",
+};
+
+const addressStyle = {
+  color: "black",
+  fontStyle: "normal",
+  fontWeight: 400,
+  fontSize: "1rem",
+  lineHeight: "17px",
+  fontSize: "0.9rem",
 };
 
 const ListingThumbnail = ({ listing }) => {
@@ -38,8 +47,10 @@ const ListingThumbnail = ({ listing }) => {
           }}
         >
           <Typography sx={textStyle}>{listing.title}</Typography>
-          <Typography sx={textStyle}>{listing.address.description}</Typography>
-          <Typography sx={textStyle}>{listing.description}</Typography>
+          <Typography sx={addressStyle}>
+            {listing.address.description}
+          </Typography>
+          <Typography sx={addressStyle}>{listing.description}</Typography>
         </Container>
       </Container>
     </>

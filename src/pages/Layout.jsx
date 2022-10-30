@@ -1,5 +1,6 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
+import BottomNavBar from "../components/BottomNavBar";
 import ResponsiveAppBar from "../components/ResponsiveAppBar";
 
 const Layout = () => {
@@ -7,7 +8,7 @@ const Layout = () => {
     <div>
       <ResponsiveAppBar />
       <Outlet />
-      {/* add footer */}
+      <BottomNavBar />
     </div>
   );
 };

@@ -11,8 +11,13 @@ import React, { useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { API_URL } from "../utils/constants";
 import axios from "axios";
-import { Visibility, VisibilityOff } from "@mui/icons-material";
-import { backgroundStyleGen } from "../utils/globalStyles";
+import { TextFields, Visibility, VisibilityOff } from "@mui/icons-material";
+import ArrowForwardOutlinedIcon from "@mui/icons-material/ArrowForwardOutlined";
+import {
+  backgroundStyleGen,
+  formTextStyle,
+  yellowButtonStyle,
+} from "../utils/globalStyles";
 
 const baseURL = API_URL;
 
@@ -81,6 +86,7 @@ const SignupPage = () => {
 
         <form onSubmit={handleSignupSubmit} className="form">
           <TextField
+            sx={formTextStyle}
             id="outlined-basic"
             label="First Name"
             variant="outlined"
@@ -91,6 +97,7 @@ const SignupPage = () => {
           />
 
           <TextField
+            sx={formTextStyle}
             id="outlined-basic"
             label="Last Name"
             variant="outlined"
@@ -101,6 +108,7 @@ const SignupPage = () => {
           />
 
           <TextField
+            sx={formTextStyle}
             id="outlined-basic"
             label="Email"
             variant="outlined"
@@ -115,6 +123,7 @@ const SignupPage = () => {
               Password
             </InputLabel>
             <OutlinedInput
+              sx={formTextStyle}
               autoComplete="new-password"
               id="outlined-adornment-password"
               type={values.showPassword ? "text" : "password"}
@@ -136,8 +145,8 @@ const SignupPage = () => {
             />
           </FormControl>
 
-          <Button variant="contained" type="submit">
-            Register
+          <Button variant="contained" type="submit" sx={yellowButtonStyle}>
+            <ArrowForwardOutlinedIcon sx={{ fill: "black" }} />
           </Button>
         </form>
 
@@ -145,7 +154,7 @@ const SignupPage = () => {
 
         <div className="go-login">
           <p>Already have an account?</p>
-          <Link to={"/login"}> Login instead</Link>
+          <Link to={"/login"}> Log in</Link>
         </div>
       </div>
     </>
