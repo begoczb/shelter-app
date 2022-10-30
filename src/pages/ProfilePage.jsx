@@ -41,6 +41,7 @@ const ProfilePage = () => {
           <span>{hostInfo.firstName}</span>
           <span>{hostInfo.lastName}</span>
           <span>{hostInfo.email}</span>
+          <BasicModal hostRooms={hostRooms} setHostRooms={setHostRooms} />
           <ul>
             {hostRooms.map((elem) => (
               <Link
@@ -53,7 +54,6 @@ const ProfilePage = () => {
             ))}
           </ul>
         </div>
-        <BasicModal hostRooms={hostRooms} setHostRooms={setHostRooms} />
       </main>
     </>
   );
