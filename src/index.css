@@ -19,9 +19,22 @@ body > * {
   box-sizing: border-box;
   margin: 0;
   text-decoration: none;
+  color: white;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+.css-1bjk3jo-MuiButtonBase-root-MuiBottomNavigationAction-root.Mui-selected {
+  color: white;
+}
+
+.login-form:not(.MuiButtonBase) {
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
+  height: 60%;
+  align-items: "center";
 }

@@ -23,24 +23,23 @@ function App() {
             </IsAnonymous>
           }
         />
+        <Route
+          path="/signup"
+          element={
+            <IsAnonymous>
+              <SignupPage />
+            </IsAnonymous>
+          }
+        />
+        <Route
+          path="/login"
+          element={
+            <IsAnonymous>
+              <LoginPage />
+            </IsAnonymous>
+          }
+        />
         <Route path="" element={<Layout />}>
-          <Route
-            path="/signup"
-            element={
-              <IsAnonymous>
-                <SignupPage />
-              </IsAnonymous>
-            }
-          />
-
-          <Route
-            path="/login"
-            element={
-              <IsAnonymous>
-                <LoginPage />
-              </IsAnonymous>
-            }
-          />
           <Route
             path="/profile"
             element={

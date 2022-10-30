@@ -1,5 +1,6 @@
 import {
   Button,
+  createTheme,
   FormControl,
   IconButton,
   InputAdornment,
@@ -7,13 +8,16 @@ import {
   OutlinedInput,
   TextField,
 } from "@mui/material";
+
 import axios from "axios";
 import React, { useState, useContext } from "react";
 import { AuthContext } from "../context/auth.context";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { API_URL } from "../utils/constants";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
-import { backgroundStyleGen } from "../utils/globalStyles";
+import { backgroundStyleGen, formTextStyle } from "../utils/globalStyles";
+import { yellowButtonStyle } from "../utils/globalStyles";
+import { Container } from "@mui/system";
 
 const baseURL = API_URL;
 
@@ -68,54 +72,81 @@ const LoginPage = () => {
   };
 
   return (
-    <div className="LoginPage" style={backgroundStyleGen}>
-      <h1>Login</h1>
+    <main className="LoginPage" style={backgroundStyleGen}>
+      <Container
+        sx={{
+          position: "absolute",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          height: "60%",
+          alignSelf: "center",
+          alignContent: "center",
+          justifyContent: "space-evenly",
+          top: "50%",
+          transform: "translateY(-50%)",
+        }}
+      >
+        <form onSubmit={handleLoginSubmit} className="login-form">
+          <h2>Log in</h2>
+          <Container>
+            <TextField
+              sx={formTextStyle}
+              id="outlined-basic"
+              label="Email"
+              variant="outlined"
+              value={email}
+              margin="normal"
+              onChange={handleEmail}
+              // autoComplete="new-password"
+              autoComplete="off"
+            />
 
-      <form onSubmit={handleLoginSubmit} className="form">
-        <TextField
-          id="outlined-basic"
-          label="Email"
-          variant="outlined"
-          value={email}
-          margin="dense"
-          onChange={handleEmail}
-          // autoComplete="new-password"
-          autoComplete="off"
-        />
+            <FormControl sx={{ m: 1, width: "25ch" }} variant="outlined">
+              <InputLabel htmlFor="outlined-adornment-password">
+                Password
+              </InputLabel>
+              <OutlinedInput
+                margin="normal"
+                sx={formTextStyle}
+                autoComplete="new-password"
+                id="outlined-adornment-password"
+                type={values.showPassword ? "text" : "password"}
+                value={values.password}
+                onChange={handleChange("password")}
+                endAdornment={
+                  <InputAdornment
+                    position="end"
+                    sx={{ color: "black", fill: "black" }}
+                  >
+                    <IconButton
+                      // color="black"
+                      aria-label="toggle password visibility"
+                      onClick={handleClickShowPassword}
+                      onMouseDown={handleMouseDownPassword}
+                      edge="end"
+                    >
+                      {values.showPassword ? <VisibilityOff /> : <Visibility />}
+                    </IconButton>
+                  </InputAdornment>
+                }
+                label="Password"
+              />
+            </FormControl>
+          </Container>
 
-        <FormControl sx={{ m: 1, width: "25ch" }} variant="outlined">
-          <InputLabel htmlFor="outlined-adornment-password">
-            Password
-          </InputLabel>
-          <OutlinedInput
-            autoComplete="new-password"
-            id="outlined-adornment-password"
-            type={values.showPassword ? "text" : "password"}
-            value={values.password}
-            onChange={handleChange("password")}
-            endAdornment={
-              <InputAdornment position="end">
-                <IconButton
-                  aria-label="toggle password visibility"
-                  onClick={handleClickShowPassword}
-                  onMouseDown={handleMouseDownPassword}
-                  edge="end"
-                >
-                  {values.showPassword ? <VisibilityOff /> : <Visibility />}
-                </IconButton>
-              </InputAdornment>
-            }
-            label="Password"
-          />
-        </FormControl>
-
-        <Button variant="contained" type="submit">
-          Login
-        </Button>
-      </form>
+          <Button variant="contained" sx={yellowButtonStyle} type="submit">
+            Log in
+          </Button>
+        </form>
+        <Container>
+          <p>Don't have an account?</p>
+          <Link to={"/signup"}>Sign up</Link>
+        </Container>
+      </Container>
 
       {errorMessage && <p className="error-message">{errorMessage}</p>}
-    </div>
+    </main>
   );
 };
 

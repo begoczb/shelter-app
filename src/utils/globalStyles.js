@@ -22,7 +22,7 @@ const backgroundStyleGen = {
 };
 
 const yellowButtonStyle = {
-  //   width: "5.9rem",
+  width: "fit-content",
   height: "2rem",
   fontSize: "1rem",
   color: "black",
@@ -30,6 +30,24 @@ const yellowButtonStyle = {
   boxShadow:
     "2px 2px 4px rgba(0, 0, 0, 0.25), inset 2px 2px 10px rgba(0, 0, 0, 0.25)",
   borderRadius: "15px",
+  alignSelf: "center",
 };
 
-export { backgroundStyleHome, backgroundStyleGen, yellowButtonStyle };
+const formTextStyle = {
+  backgroundColor: "#FFFFFF",
+  boxShadow:
+    "2px 2px 4px rgba(0, 0, 0, 0.25), inset 2px 2px 10px rgba(0, 0, 0, 0.25)",
+  borderRadius: "25px",
+  color: "black",
+  "&:hover": {
+    backgroundColor: "lightgray",
+    marginBottom: "1.8rem",
+  },
+};
+
+export {
+  backgroundStyleHome,
+  backgroundStyleGen,
+  yellowButtonStyle,
+  formTextStyle,
+};

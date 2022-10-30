@@ -11,6 +11,7 @@ import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
+import LogoutOutlinedIcon from "@mui/icons-material/LogoutOutlined";
 import AdbIcon from "@mui/icons-material/Adb";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/auth.context";
@@ -30,9 +31,9 @@ const ResponsiveAppBar = () => {
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
-  const handleOpenUserMenu = (event) => {
-    setAnchorElUser(event.currentTarget);
-  };
+  // const handleOpenUserMenu = (event) => {
+  //   setAnchorElUser(event.currentTarget);
+  // };
 
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
@@ -45,15 +46,15 @@ const ResponsiveAppBar = () => {
   const handleMenuClick = (menu) => {
     switch (menu) {
       case "Profile":
-        console.log(`to profile`);
+        // console.log(`to profile`);
         navigate("/profile");
         break;
       case "Browse":
-        console.log(`to listings`);
+        // console.log(`to listings`);
         navigate("/listings");
         break;
       case "Logout":
-        console.log(`we logout`);
+        // console.log(`we logout`);
         removeToken();
         logOutUser();
         break;
@@ -61,7 +62,7 @@ const ResponsiveAppBar = () => {
         break;
     }
 
-    handleCloseUserMenu();
+    handleCloseNavMenu();
   };
 
   return (
@@ -161,9 +162,18 @@ const ResponsiveAppBar = () => {
           </Box>
 
           <Box sx={{ flexGrow: 0 }}>
-            <Tooltip title="Open settings">
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+            <Tooltip title="Logout">
+              <IconButton
+                onClick={() => {
+                  handleMenuClick("Logout");
+                }}
+                sx={{
+                  color: "white",
+                  fontSize: "4rem",
+                  padding: "0.2rem",
+                }}
+              >
+                <LogoutOutlinedIcon />
               </IconButton>
             </Tooltip>
             <Menu
@@ -187,8 +197,6 @@ const ResponsiveAppBar = () => {
                   key={setting}
                   onClick={() => {
                     handleMenuClick(setting);
-                    // navigate("/profile");
-                    // handleCloseUserMenu();
                   }}
                 >
                   <Typography textAlign="center">{setting}</Typography>
