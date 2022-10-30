@@ -1,5 +1,7 @@
-.App {
+.App,
+.App > * {
   text-align: center;
+  height: 100%;
 }
 
 * {

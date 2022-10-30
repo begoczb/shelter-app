@@ -48,7 +48,7 @@ const backgroundStyle = {
   display: "flex",
   flexDirection: "column",
   alignItems: "center",
-  height: "100vh",
+  height: "100%",
   maxWidth: "100vw",
   background: "linear-gradient(180deg, #7D0C2E 0%, #EC4073 100%)",
 
@@ -102,7 +102,7 @@ const textPos2 = {
 const imageStyle = {
   position: "absolute",
   width: "390px",
-  height: "390px",
+  height: "241px",
   left: "50%",
   transform: "translate(-50%)",
   top: "603px",

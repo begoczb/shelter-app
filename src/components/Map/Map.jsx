@@ -28,6 +28,7 @@ const Map = ({ location }) => {
 
   const { listings } = useContext(ListingsContext);
   console.log(listings);
+  
   useEffect(() => {
     if (location) {
       setCenterSearch(location);

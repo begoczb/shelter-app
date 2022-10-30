@@ -42,7 +42,7 @@ const ProfilePage = () => {
           <ul>
             {hostRooms.map((elem) => (
               <li key={elem._id}>
-                <Link to={elem._id}>{elem.title}</Link>{" "}
+                <Link to={elem._id}>{elem.title}</Link>
               </li>
             ))}
           </ul>
