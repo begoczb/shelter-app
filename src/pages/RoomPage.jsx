@@ -1,6 +1,10 @@
 import { Container } from "@mui/material";
 import React from "react";
+
 import { useLocation } from "react-router-dom";
+
+
+import { backgroundStyleGen } from "../utils/globalStyles";
 
 
 const RoomPage = () => {
@@ -9,7 +13,7 @@ const RoomPage = () => {
   const { hostInfo, roomInfo } = state || {};
 
   return (
-    <main id="room">
+    <main id="room" style={backgroundStyleGen}>
       <Container>
         <h2>{roomInfo.title}</h2>
         <ul>

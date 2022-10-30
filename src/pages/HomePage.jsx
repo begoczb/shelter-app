@@ -8,6 +8,7 @@ import {
   ThemeProvider,
 } from "@mui/material/styles";
 import "./HomePage.css";
+import { backgroundStyleHome } from "../utils/globalStyles";
 import image from "../source/img/favpng_silhouette-city-skyline 1.png";
 
 const buttonStyle = {
@@ -41,18 +42,6 @@ const buttonPos3 = {
   left: "50%",
   transform: "translate(-50%)",
   top: "573px",
-};
-
-const backgroundStyle = {
-  gap: 2,
-  display: "flex",
-  flexDirection: "column",
-  alignItems: "center",
-  height: "100vh",
-  maxWidth: "100vw",
-  background: "linear-gradient(180deg, #7D0C2E 0%, #EC4073 100%)",
-
-  color: "white",
 };
 
 const titleStyle = {
@@ -102,7 +91,7 @@ const textPos2 = {
 const imageStyle = {
   position: "absolute",
   width: "390px",
-  height: "390px",
+  height: "241px",
   left: "50%",
   transform: "translate(-50%)",
   top: "603px",
@@ -123,7 +112,7 @@ const HomePage = () => {
 
   return (
     <main id="home">
-      <Container maxWidth={false} sx={backgroundStyle}>
+      <Container maxWidth={false} sx={backgroundStyleHome}>
         <Typography variant="h1" sx={titleStyle}>
           SHELTER HERO
         </Typography>

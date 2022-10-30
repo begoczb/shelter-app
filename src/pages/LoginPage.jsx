@@ -13,6 +13,7 @@ import { AuthContext } from "../context/auth.context";
 import { useNavigate } from "react-router-dom";
 import { API_URL } from "../utils/constants";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
+import { backgroundStyleGen } from "../utils/globalStyles";
 
 const baseURL = API_URL;
 
@@ -67,7 +68,7 @@ const LoginPage = () => {
   };
 
   return (
-    <div className="LoginPage">
+    <div className="LoginPage" style={backgroundStyleGen}>
       <h1>Login</h1>
 
       <form onSubmit={handleLoginSubmit} className="form">

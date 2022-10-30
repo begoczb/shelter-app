@@ -10,6 +10,18 @@ import LocationOnIcon from "@mui/icons-material/LocationOn";
 import { Autocomplete, Box, Grid, TextField, Typography } from "@mui/material";
 import axios from "axios";
 
+const searchBarStyle = {
+  position: "absolute",
+  width: " 221px",
+  height: "30px",
+  left: "25px",
+  top: "90px",
+
+  background: "#FFFFFF",
+  boxShadow: "2px 2px 4px rgba(0, 0, 0, 0.25)",
+  borderRadius: "15px",
+};
+
 function loadScript(src, position, id) {
   if (!position) {
     return;
@@ -94,12 +106,12 @@ const AddressInput = ({ handleAddress, status, handleLocation }) => {
     <>
       <Autocomplete
         // margin="normal"
+        sx={status ? { width: "100%" } : { searchBarStyle }}
         disablePortal
         id="google-map-demo"
         getOptionLabel={(option) =>
           typeof option === "string" ? option : option.description
         }
-        sx={{ width: 300 }}
         filterOptions={(x) => x}
         options={options}
         autoComplete

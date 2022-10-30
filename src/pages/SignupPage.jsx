@@ -12,6 +12,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { API_URL } from "../utils/constants";
 import axios from "axios";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
+import { backgroundStyleGen } from "../utils/globalStyles";
 
 const baseURL = API_URL;
 
@@ -75,7 +76,7 @@ const SignupPage = () => {
 
   return (
     <>
-      <div className="SignupPage">
+      <div className="SignupPage" style={backgroundStyleGen}>
         <h1>Sign Up</h1>
 
         <form onSubmit={handleSignupSubmit} className="form">
