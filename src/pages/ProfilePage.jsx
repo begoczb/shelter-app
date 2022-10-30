@@ -5,6 +5,7 @@ import { useEffect } from "react";
 import axios from "axios";
 import { API_URL } from "../utils/constants";
 import { Link } from "react-router-dom";
+import { backgroundStyleGen } from "../utils/globalStyles";
 
 const ProfilePage = () => {
   const { user, getToken } = useContext(AuthContext);
@@ -31,7 +32,7 @@ const ProfilePage = () => {
 
   return (
     <>
-      <main>
+      <main style={backgroundStyleGen}>
         <h3>Hello {user.name} </h3>
         <h4>{user.userType}</h4>
 
@@ -47,7 +48,7 @@ const ProfilePage = () => {
             ))}
           </ul>
         </div>
-        <BasicModal hostRooms={hostRooms} setHostRooms={setHostRooms}/>
+        <BasicModal hostRooms={hostRooms} setHostRooms={setHostRooms} />
       </main>
     </>
   );

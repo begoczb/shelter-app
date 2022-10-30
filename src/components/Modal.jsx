@@ -11,7 +11,7 @@ const style = {
   top: "50%",
   left: "50%",
   transform: "translate(-50%, -50%)",
-  width: "400",
+  width: "99vw",
   //mobile, should add breakpoints
   // width: "75vw",
   bgcolor: "background.paper",
@@ -21,7 +21,7 @@ const style = {
   p: 4,
 };
 
-export default function BasicModal({hostRooms, setHostRooms}) {
+export default function BasicModal({ hostRooms, setHostRooms }) {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -39,7 +39,11 @@ export default function BasicModal({hostRooms, setHostRooms}) {
           <Typography id="modal-modal-title" variant="h6" component="h2">
             Add Room
           </Typography>
-          <Form handleClose={handleClose} hostRooms={hostRooms} setHostRooms={setHostRooms}/>
+          <Form
+            handleClose={handleClose}
+            hostRooms={hostRooms}
+            setHostRooms={setHostRooms}
+          />
         </Box>
       </Modal>
     </Container>

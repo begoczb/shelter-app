@@ -11,6 +11,7 @@ import { ListingsContext } from "../context/listings.context";
 import { API_KEY, API_URL } from "../utils/constants";
 import ListingThumbnail from "../components/ListingThumbnail";
 import { Container } from "@mui/system";
+import { backgroundStyleGen } from "../utils/globalStyles";
 
 const places = ["places"];
 
@@ -73,7 +74,7 @@ const ListingsPage = () => {
   }, [placeId]);
 
   return isLoaded && listings ? (
-    <main>
+    <main style={backgroundStyleGen}>
       <AddressInput status={false} handleLocation={handleLocation} />
       <Map location={location} />
       <Container
