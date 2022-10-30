@@ -10,6 +10,10 @@ const listingThumbStyle = {
   justifyContent: "space-between",
   marginBottom: "2px",
   display: "flex",
+  paddingLeft: "0",
+  paddingRight: "0.5rem",
+  minWidth: "100%",
+  maxWidth: "100%",
 };
 
 const textStyle = {
@@ -25,7 +29,14 @@ const ListingThumbnail = ({ listing }) => {
     <>
       <Container sx={listingThumbStyle}>
         <img src={image} alt="demo-thumb" />
-        <Container sx={{ display: "flex", flexDirection: "column" }}>
+        <Container
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "flex-start",
+          }}
+        >
           <Typography sx={textStyle}>{listing.title}</Typography>
           <Typography sx={textStyle}>{listing.address.description}</Typography>
           <Typography sx={textStyle}>{listing.description}</Typography>

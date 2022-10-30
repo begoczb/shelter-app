@@ -11,6 +11,7 @@ import { Autocomplete, Box, Grid, TextField, Typography } from "@mui/material";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import { getBoundsZoomLevel } from "../../utils/helperFunction";
 import { ListingsContext } from "../../context/listings.context";
+import { Link, Navigate, useLocation, useNavigate } from "react-router-dom";
 
 const containerStyle = {
   width: "100vw",
@@ -26,9 +27,11 @@ const Map = ({ location }) => {
   const [map, setMap] = useState(null);
   const [centerSearch, setCenterSearch] = useState(null);
 
+  const navigate = useNavigate();
+
   const { listings } = useContext(ListingsContext);
   console.log(listings);
-  
+
   useEffect(() => {
     if (location) {
       setCenterSearch(location);
@@ -58,6 +61,9 @@ const Map = ({ location }) => {
     >
       {listings.map((elem) => (
         <Marker
+          onClick={() => {
+            navigate(`/room/${elem._id}`, { state: { roomInfo: elem } });
+          }}
           key={elem._id}
           position={{ lat: elem.address.lat, lng: elem.address.lng }}
         />

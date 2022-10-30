@@ -122,6 +122,8 @@ const AddressInput = ({ handleAddress, status, handleLocation }) => {
                   border: "none",
                   padding: "1rem",
                   textAlign: "center",
+                  // overflow: "scroll",
+                  textOverflow: "ellipsis",
                 },
                 ".css-14s5rfu-MuiFormLabel-root-MuiInputLabel-root": {
                   fontSize: "1rem",
@@ -129,8 +131,8 @@ const AddressInput = ({ handleAddress, status, handleLocation }) => {
                 },
                 "#google-map-demo": {
                   position: "absolute",
-                  width: " 100%",
-
+                  width: "70%",
+                  left: "0",
                   top: "-3px",
                 },
                 "& label.Mui-focused": {
