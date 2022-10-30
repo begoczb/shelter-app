@@ -95,14 +95,21 @@ const ListingsPage = () => {
         sx={{
           display: "flex",
           flexDirection: "column",
-          justifyContent: "center",
+          justifyContent: "start",
           alignItems: "center",
           alignContent: "center",
+          minHeight: "50%",
+          padding: "0.2rem",
+          overflow: "auto",
         }}
       >
         {listings.map((listing) => (
-          <Link to={`/room/${listing._id}`} state={{ roomInfo: listing }}>
-            <ListingThumbnail key={listing._id} listing={listing} />
+          <Link
+            to={`/room/${listing._id}`}
+            key={listing._id}
+            state={{ roomInfo: listing }}
+          >
+            <ListingThumbnail listing={listing} />
           </Link>
         ))}
       </Container>
