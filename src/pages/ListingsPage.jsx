@@ -11,7 +11,9 @@ import { ListingsContext } from "../context/listings.context";
 import { API_KEY, API_URL } from "../utils/constants";
 import ListingThumbnail from "../components/ListingThumbnail";
 import { Container } from "@mui/system";
-import { backgroundStyleGen } from "../utils/globalStyles";
+import { backgroundStyleGen, yellowButtonStyle } from "../utils/globalStyles";
+import { Button } from "@mui/material";
+import { Link } from "react-router-dom";
 
 const places = ["places"];
 
@@ -75,7 +77,19 @@ const ListingsPage = () => {
 
   return isLoaded && listings ? (
     <main style={backgroundStyleGen}>
-      <AddressInput status={false} handleLocation={handleLocation} />
+      <Container
+        sx={{
+          display: "flex",
+          justifyContent: "space-between",
+          padding: "1rem",
+        }}
+      >
+        <AddressInput status={false} handleLocation={handleLocation} />
+        <Button variant="contained" sx={yellowButtonStyle}>
+          Filter
+        </Button>
+      </Container>
+
       <Map location={location} />
       <Container
         sx={{
@@ -87,7 +101,9 @@ const ListingsPage = () => {
         }}
       >
         {listings.map((listing) => (
-          <ListingThumbnail key={listing._id} listing={listing} />
+          <Link to={`/room/${listing._id}`} state={{ roomInfo: listing }}>
+            <ListingThumbnail key={listing._id} listing={listing} />
+          </Link>
         ))}
       </Container>
     </main>
