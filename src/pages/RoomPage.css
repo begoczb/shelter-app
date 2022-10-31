@@ -13,16 +13,24 @@
   display: flex;
   margin: 0;
   align-items: center;
-  justify-content: space-around;
+  text-align: center;
+  justify-content: center
 
 
   }
 
   .item {
-
+    display: flex;
+    text-align: center;   
+    align-items: center;
+    justify-content: center;
+    width: 120px;
+    aspect-ratio: 1;
+    margin: 10px;
     padding: 10px;
-    border-radius: 10%;
-    background-color: rgb(168, 118, 154);
+    border-radius: 50%;
+    background-color: #FDF2F5;
+
   }
 
   img {
