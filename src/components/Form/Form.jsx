@@ -12,10 +12,11 @@ import "./Form.css";
 import { useContext } from "react";
 import { AuthContext } from "../../context/auth.context";
 import AddressInput from "../AddressInput/AddressInput";
+import { FormTextField, yellowButtonStyle } from "../../utils/globalStyles";
 
 // const baseURL = API_URL;
 
-const Form = ({handleClose, hostRooms, setHostRooms}) => {
+const Form = ({ handleClose, hostRooms, setHostRooms }) => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [address, setAddress] = useState({});
@@ -48,12 +49,11 @@ const Form = ({handleClose, hostRooms, setHostRooms}) => {
     var result = new Date(date);
     result.setDate(result.getDate() + days);
     return result;
-  }
+  };
 
   const { getToken } = useContext(AuthContext);
 
   const handleAddRoom = (e) => {
-
     e.preventDefault();
     const token = getToken();
     axios({
@@ -75,7 +75,6 @@ const Form = ({handleClose, hostRooms, setHostRooms}) => {
       .then((response) => {
         handleClose();
         setHostRooms([...hostRooms, response.data]);
-
       })
       .catch((error) => {
         console.log(error);
@@ -89,22 +88,26 @@ const Form = ({handleClose, hostRooms, setHostRooms}) => {
   return (
     <>
       <Container>
-        <form className="form" onSubmit={handleAddRoom}>
+        <form
+          className="form"
+          style={{ display: "flex" }}
+          onSubmit={handleAddRoom}
+        >
           {/* <label>Address:</label> */}
-          <TextField
-            id="outlined-basic"
+          <FormTextField
+            id="filled-basic"
             label="Title"
-            variant="outlined"
+            variant="filled"
             value={title}
-            margin="dense"
+            margin="normal"
             onChange={handleTitle}
             autoComplete="off"
           />
 
-          <TextField
-            id="outlined-basic"
+          <FormTextField
+            id="filled-basic"
             label="Description"
-            variant="outlined"
+            variant="filled"
             value={description}
             margin="dense"
             onChange={handleDescription}
@@ -113,12 +116,18 @@ const Form = ({handleClose, hostRooms, setHostRooms}) => {
             // rows={2}
           />
 
-          <AddressInput handleAddress={handleAddress} status={true} />
-          <TextField
-            id="outlined-number"
+          <AddressInput
+            handleAddress={handleAddress}
+            status={true}
+            disable={false}
+          />
+          <FormTextField
+            id="filled-number"
+            disableUnderline
             label="Number of Guests"
             type="number"
             margin="normal"
+            variant="filled"
             InputLabelProps={{
               shrink: true,
             }}
@@ -129,26 +138,40 @@ const Form = ({handleClose, hostRooms, setHostRooms}) => {
           />
 
           <FormControlLabel
+            sx={{ width: "75%" }}
             control={
               <Checkbox
                 checked={gender}
                 onChange={() => {
                   handleCheckbox("gender");
                 }}
-                sx={{ "& .MuiSvgIcon-root": { fontSize: 28 } }}
+                sx={{
+                  "& .MuiSvgIcon-root": {
+                    fontSize: "2rem",
+                    color: "white",
+                    fill: "white",
+                  },
+                }}
               />
             }
             label="WOMEN ONLY"
           />
 
           <FormControlLabel
+            sx={{ width: "75%" }}
             control={
               <Checkbox
                 checked={pet}
                 onChange={() => {
                   handleCheckbox("pet");
                 }}
-                sx={{ "& .MuiSvgIcon-root": { fontSize: 28 } }}
+                sx={{
+                  "& .MuiSvgIcon-root": {
+                    fontSize: "2rem",
+                    color: "white",
+                    fill: "white",
+                  },
+                }}
               />
             }
             label="PETS AUTHORIZED"
@@ -156,6 +179,7 @@ const Form = ({handleClose, hostRooms, setHostRooms}) => {
 
           <label>Start Date:</label>
           <input
+            style={{ marginBottom: "1.5rem" }}
             type="date"
             name="startDate"
             min={date.toISOString().substring(0, 10)}
@@ -169,6 +193,7 @@ const Form = ({handleClose, hostRooms, setHostRooms}) => {
           />
           <label>End Date:</label>
           <input
+            style={{ marginBottom: "1.5rem" }}
             type="date"
             name="endDate"
             min={
@@ -179,7 +204,12 @@ const Form = ({handleClose, hostRooms, setHostRooms}) => {
             value={endDate}
             onChange={handleEndDate}
           />
-          <Button variant="contained" type="submit" onClick={handleAddRoom}>
+          <Button
+            variant="contained"
+            type="submit"
+            sx={yellowButtonStyle}
+            onClick={handleAddRoom}
+          >
             Add
           </Button>
         </form>

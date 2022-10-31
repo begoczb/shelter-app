@@ -5,22 +5,7 @@ import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import Form from "./Form/Form.jsx";
 import { Container } from "@mui/material";
-import { yellowButtonStyle } from "../utils/globalStyles.js";
-
-const style = {
-  position: "absolute",
-  top: "50%",
-  left: "50%",
-  transform: "translate(-50%, -50%)",
-  width: "99vw",
-  //mobile, should add breakpoints
-  // width: "75vw",
-  bgcolor: "background.paper",
-  border: "2px solid #000",
-  borderRadius: "30px",
-  boxShadow: 24,
-  p: 4,
-};
+import { modalStyle, yellowButtonStyle } from "../utils/globalStyles.js";
 
 export default function BasicModal({ hostRooms, setHostRooms }) {
   const [open, setOpen] = React.useState(false);
@@ -38,7 +23,7 @@ export default function BasicModal({ hostRooms, setHostRooms }) {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <Box sx={style}>
+        <Box sx={modalStyle}>
           <Typography id="modal-modal-title" variant="h6" component="h2">
             Add Room
           </Typography>

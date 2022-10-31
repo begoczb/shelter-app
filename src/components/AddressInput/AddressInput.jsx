@@ -37,7 +37,7 @@ function loadScript(src, position, id) {
 const autocompleteService = { current: null };
 let service = null;
 
-const AddressInput = ({ handleAddress, status, handleLocation }) => {
+const AddressInput = ({ handleAddress, status, handleLocation, disable }) => {
   const [value, setValue] = useState(null);
   const [inputValue, setInputValue] = useState("");
   const [options, setOptions] = useState([]);
@@ -109,25 +109,64 @@ const AddressInput = ({ handleAddress, status, handleLocation }) => {
   return (
     <>
       <Autocomplete
-        disabled={user.userType === "host" ? true : false}
+        disabled={disable}
         // margin="normal"
         sx={
           status
-            ? { width: "100%" }
-            : {
+            ? {
                 ".css-154xyx0-MuiInputBase-root-MuiOutlinedInput-root": {
-                  // position: "absolute",
                   width: " 221px",
                   height: "1rem",
-                  // left: "25px",
-                  // top: "90px",
+
+                  background: "white",
+                  boxShadow: "2px 2px 4px rgba(0, 0, 0, 0.25)",
+                  borderRadius: "15px",
+                  border: "none",
+                  padding: "1.5rem",
+                  textAlign: "center",
+
+                  textOverflow: "ellipsis",
+                },
+                ".css-14s5rfu-MuiFormLabel-root-MuiInputLabel-root": {
+                  fontSize: "1rem",
+                  top: "-10px",
+                },
+                "#google-map-demo": {
+                  position: "absolute",
+                  width: "70%",
+                  left: "0",
+                  top: "-3px",
+                },
+                "& label.Mui-focused": {
+                  color: "#D8B6C0",
+                },
+                "& .MuiInput-underline:after": {
+                  borderBottomColor: "#973C57",
+                },
+                "& .MuiOutlinedInput-root": {
+                  "& fieldset": {
+                    borderColor: "#973C57",
+                  },
+                  "&:hover fieldset": {
+                    borderColor: "#973C57",
+                  },
+                  "&.Mui-focused fieldset": {
+                    borderColor: "#973C57",
+                  },
+                },
+              }
+            : {
+                ".css-154xyx0-MuiInputBase-root-MuiOutlinedInput-root": {
+                  width: " 221px",
+                  height: "1rem",
+
                   background: "white",
                   boxShadow: "2px 2px 4px rgba(0, 0, 0, 0.25)",
                   borderRadius: "15px",
                   border: "none",
                   padding: "1rem",
                   textAlign: "center",
-                  // overflow: "scroll",
+
                   textOverflow: "ellipsis",
                 },
                 ".css-14s5rfu-MuiFormLabel-root-MuiInputLabel-root": {
