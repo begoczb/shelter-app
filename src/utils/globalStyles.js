@@ -133,6 +133,13 @@ const informationLabel = {
     backgroundColor: "lightgray",
     marginBottom: "1.8rem",
   },
+  fontSize: "1.1rem",
+  alignSelf: "start",
+  padding: "0.8rem",
+  width: "100%",
+  display: "flex",
+  justifyContent: "space-between",
+  marginBottom: "1rem",
 };
 
 export {

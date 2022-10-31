@@ -8,6 +8,22 @@ import { Link } from "react-router-dom";
 import { backgroundStyleGen, informationLabel } from "../utils/globalStyles";
 import ListingThumbnail from "../components/ListingThumbnail";
 import { Container } from "@mui/system";
+import BackgroundLetterAvatars from "../components/BackgroundLettersAvatar";
+import EditIcon from "@mui/icons-material/Edit";
+import "./ProfilePage.css";
+
+const listingThumbStyle = {
+  height: "85px",
+  background: "#FDF2F5",
+  boxShadow: "2px 2px 4px rgba(0, 0, 0, 0.25)",
+  borderRadius: "15px",
+  justifyContent: "space-between",
+  marginBottom: "2px",
+  display: "flex",
+  paddingLeft: "0",
+  paddingRight: "0.5rem",
+  overflowY: "auto",
+};
 
 const ProfilePage = () => {
   const { user, getToken } = useContext(AuthContext);
@@ -50,62 +66,122 @@ const ProfilePage = () => {
 
   return user.userType === "host" ? (
     <>
-      <main style={backgroundStyleGen}>
-        <h3>My profile</h3>
-
+      <main id="profile-page" style={backgroundStyleGen}>
         <Container
           sx={{
             position: "absolute",
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
-            height: "60%",
+            padding: "0",
+            margin: "0",
+            height: "100vh",
             alignSelf: "center",
             alignContent: "center",
             justifyContent: "space-evenly",
-            top: "50%",
-            transform: "translateY(-50%)",
           }}
         >
-          <span style={informationLabel}>{hostInfo.firstName}</span>
-          <span style={informationLabel}>{hostInfo.lastName}</span>
-          <span style={informationLabel}>{hostInfo.email}</span>
+          <Container
+            sx={{
+              display: "flex",
+              flexDirection: "row",
+              padding: "2rem",
+              margin: "0",
+            }}
+          >
+            <Container sx={{ display: "flex", flexDirection: "column" }}>
+              <h3>My profile</h3>
+              <span style={informationLabel}>
+                {hostInfo.firstName}
+
+                <EditIcon sx={{ alignSelf: "end" }} />
+              </span>
+              <span style={informationLabel}>
+                {hostInfo.lastName}
+                <EditIcon sx={{ alignSelf: "end" }} />
+              </span>
+              <span style={informationLabel}>
+                {hostInfo.email}
+                <EditIcon sx={{ alignSelf: "end" }} />
+              </span>
+            </Container>
+            <BackgroundLetterAvatars
+              string={`${hostInfo.firstName} ${hostInfo.lastName}`}
+            />
+          </Container>
           <BasicModal hostRooms={hostRooms} setHostRooms={setHostRooms} />
-          <ul>
-            {hostRooms.map((elem) => (
-              <Link
-                key={elem._id}
-                to={`/room/${elem._id}`}
-                state={{ hostInfo: hostInfo, roomInfo: elem }}
-              >
-                <ListingThumbnail listing={elem} />
-              </Link>
-            ))}
-          </ul>
+          <Container
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "flex-start",
+              alignItems: "flex-start",
+              margin: "0",
+              overflowY: "auto",
+              padding: "0",
+              paddingLeft: "0.3rem",
+              width: "100%",
+            }}
+          >
+            <h3>My listings:</h3>
+            <Container
+              sx={{
+                Height: "100%",
+                padding: "0.2rem",
+                overflowY: "auto",
+                display: "flex",
+                flexDirection: "column",
+              }}
+            >
+              {hostRooms.map((elem) => (
+                <Link
+                  key={elem._id}
+                  to={`/room/${elem._id}`}
+                  state={{ hostInfo: hostInfo, roomInfo: elem }}
+                >
+                  <ListingThumbnail listing={elem} style={listingThumbStyle} />
+                </Link>
+              ))}
+            </Container>
+          </Container>
         </Container>
       </main>
     </>
   ) : (
     <>
-      <main style={backgroundStyleGen}>
-        <h3>My profile</h3>
-
+      <main id="profile-page" style={backgroundStyleGen}>
         <Container
           sx={{
             display: "flex",
             flexDirection: "column",
             alignItems: "flex-start",
-            // height: "60%",
+
             alignSelf: "center",
             alignContent: "flex-start",
             justifyContent: "center",
-            // top: "50%",
-            // transform: "translateY(-50%)",
           }}
         >
-          <span style={informationLabel}>{guestInfo.firstName}</span>
-          <span style={informationLabel}>{guestInfo.lastName}</span>
-          <span style={informationLabel}>{guestInfo.email}</span>
+          <Container sx={{ display: "flex", flexDirection: "row" }}>
+            <Container sx={{ display: "flex", flexDirection: "column" }}>
+              <h3>My profile</h3>
+              <span style={informationLabel}>
+                {guestInfo.firstName}
+                <EditIcon sx={{ alignSelf: "end" }} />
+              </span>
+              <span style={informationLabel}>
+                {guestInfo.lastName}
+                <EditIcon sx={{ alignSelf: "end" }} />
+              </span>
+              <span style={informationLabel}>
+                {guestInfo.email}
+                <EditIcon sx={{ alignSelf: "end" }} />
+              </span>
+            </Container>
+            <BackgroundLetterAvatars
+              string={`${guestInfo.firstName} ${guestInfo.lastName}`}
+              sx={{ height: "56px", width: "56px" }}
+            />
+          </Container>
         </Container>
       </main>
     </>
