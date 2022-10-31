@@ -98,7 +98,11 @@ const ListingsPage = () => {
           padding: "1rem",
         }}
       >
-        <AddressInput status={false} handleLocation={handleLocation} />
+        <AddressInput
+          status={false}
+          handleLocation={handleLocation}
+          disable={true}
+        />
         <Button variant="contained" sx={yellowButtonStyle}>
           Filter
         </Button>

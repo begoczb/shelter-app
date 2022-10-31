@@ -142,6 +142,20 @@ const informationLabel = {
   marginBottom: "1rem",
 };
 
+const modalStyle = {
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  width: "99vw",
+  bgcolor: "#7D0C2E",
+  border: "2px solid #000",
+  borderRadius: "30px",
+  boxShadow: 24,
+  color: "white",
+  p: 4,
+};
+
 export {
   backgroundStyleHome,
   backgroundStyleGen,
@@ -151,4 +165,5 @@ export {
   theme,
   passwordStyle,
   informationLabel,
+  modalStyle,
 };
