@@ -1,5 +1,6 @@
 import {
   Button,
+  FilledInput,
   FormControl,
   IconButton,
   InputAdornment,
@@ -15,9 +16,12 @@ import { TextFields, Visibility, VisibilityOff } from "@mui/icons-material";
 import ArrowForwardOutlinedIcon from "@mui/icons-material/ArrowForwardOutlined";
 import {
   backgroundStyleGen,
+  FormTextField,
   formTextStyle,
+  passwordStyle,
   yellowButtonStyle,
 } from "../utils/globalStyles";
+import { Container } from "@mui/system";
 
 const baseURL = API_URL;
 
@@ -81,82 +85,99 @@ const SignupPage = () => {
 
   return (
     <>
-      <div className="SignupPage" style={backgroundStyleGen}>
-        <h1>Sign Up</h1>
+      <main className="SignupPage" style={backgroundStyleGen}>
+        <Container
+          sx={{
+            position: "absolute",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            height: "60%",
+            alignSelf: "center",
+            alignContent: "center",
+            justifyContent: "space-evenly",
+            top: "50%",
+            transform: "translateY(-50%)",
+          }}
+        >
+          <h1>Sign Up</h1>
 
-        <form onSubmit={handleSignupSubmit} className="form">
-          <TextField
-            sx={formTextStyle}
-            id="outlined-basic"
-            label="First Name"
-            variant="outlined"
-            value={firstName}
-            margin="dense"
-            onChange={handleFirstName}
-            autoComplete="off"
-          />
+          <form onSubmit={handleSignupSubmit} className="form">
+            <Container sx={{ display: "flex", flexDirection: "column" }}>
+              <FormTextField
+                id="filled-basic"
+                label="First Name"
+                variant="filled"
+                value={firstName}
+                margin="dense"
+                onChange={handleFirstName}
+                autoComplete="off"
+              />
 
-          <TextField
-            sx={formTextStyle}
-            id="outlined-basic"
-            label="Last Name"
-            variant="outlined"
-            value={lastName}
-            margin="dense"
-            onChange={handleLastName}
-            autoComplete="off"
-          />
+              <FormTextField
+                id="filled-basic"
+                label="Last Name"
+                variant="filled"
+                value={lastName}
+                margin="dense"
+                onChange={handleLastName}
+                autoComplete="off"
+              />
 
-          <TextField
-            sx={formTextStyle}
-            id="outlined-basic"
-            label="Email"
-            variant="outlined"
-            value={email}
-            margin="dense"
-            onChange={handleEmail}
-            autoComplete="off"
-          />
+              <FormTextField
+                id="filled-basic"
+                label="Email"
+                variant="filled"
+                value={email}
+                margin="dense"
+                onChange={handleEmail}
+                autoComplete="off"
+              />
 
-          <FormControl sx={{ m: 1, width: "25ch" }} variant="outlined">
-            <InputLabel htmlFor="outlined-adornment-password">
-              Password
-            </InputLabel>
-            <OutlinedInput
-              sx={formTextStyle}
-              autoComplete="new-password"
-              id="outlined-adornment-password"
-              type={values.showPassword ? "text" : "password"}
-              value={values.password}
-              onChange={handleChange("password")}
-              endAdornment={
-                <InputAdornment position="end">
-                  <IconButton
-                    aria-label="toggle password visibility"
-                    onClick={handleClickShowPassword}
-                    onMouseDown={handleMouseDownPassword}
-                    edge="end"
-                  >
-                    {values.showPassword ? <VisibilityOff /> : <Visibility />}
-                  </IconButton>
-                </InputAdornment>
-              }
-              label="Password"
-            />
-          </FormControl>
+              <FormControl sx={passwordStyle} variant="filled">
+                <InputLabel htmlFor="filled-adornment-password">
+                  Password
+                </InputLabel>
+                <FilledInput
+                  disableUnderline
+                  autoComplete="new-password"
+                  id="filled-adornment-password"
+                  type={values.showPassword ? "text" : "password"}
+                  value={values.password}
+                  onChange={handleChange("password")}
+                  endAdornment={
+                    <InputAdornment position="end">
+                      <IconButton
+                        aria-label="toggle password visibility"
+                        onClick={handleClickShowPassword}
+                        onMouseDown={handleMouseDownPassword}
+                        edge="end"
+                      >
+                        {values.showPassword ? (
+                          <VisibilityOff />
+                        ) : (
+                          <Visibility />
+                        )}
+                      </IconButton>
+                    </InputAdornment>
+                  }
+                  label="Password"
+                />
+              </FormControl>
+            </Container>
 
-          <Button variant="contained" type="submit" sx={yellowButtonStyle}>
-            <ArrowForwardOutlinedIcon sx={{ fill: "black" }} />
-          </Button>
-        </form>
+            <Button variant="contained" type="submit" sx={yellowButtonStyle}>
+              <ArrowForwardOutlinedIcon sx={{ fill: "black" }} />
+            </Button>
+          </form>
 
+          <Container>
+            <p>Already have an account?</p>
+            <Link to={"/login"}> Log in</Link>
+          </Container>
+        </Container>
         {errorMessage && <p className="error-message">{errorMessage}</p>}
-
-        <div className="go-login">
-          <p>Already have an account?</p>
-          <Link to={"/login"}> Log in</Link>
-        </div>
-      </div>
+      </main>
     </>
   );
 };

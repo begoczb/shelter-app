@@ -1,12 +1,14 @@
 import {
   Button,
   createTheme,
+  FilledInput,
   FormControl,
   IconButton,
   InputAdornment,
   InputLabel,
   OutlinedInput,
   TextField,
+  ThemeProvider,
 } from "@mui/material";
 
 import axios from "axios";
@@ -15,7 +17,13 @@ import { AuthContext } from "../context/auth.context";
 import { Link, useNavigate } from "react-router-dom";
 import { API_URL } from "../utils/constants";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
-import { backgroundStyleGen, formTextStyle } from "../utils/globalStyles";
+import {
+  backgroundStyleGen,
+  FormTextField,
+  formTextStyle,
+  passwordStyle,
+  theme,
+} from "../utils/globalStyles";
 import { yellowButtonStyle } from "../utils/globalStyles";
 import { Container } from "@mui/system";
 
@@ -89,36 +97,40 @@ const LoginPage = () => {
       >
         <form onSubmit={handleLoginSubmit} className="login-form">
           <h2>Log in</h2>
-          <Container>
-            <TextField
-              sx={formTextStyle}
-              id="outlined-basic"
-              label="Email"
-              variant="outlined"
-              value={email}
-              margin="normal"
-              onChange={handleEmail}
-              // autoComplete="new-password"
-              autoComplete="off"
-            />
+          <Container sx={{ display: "flex", flexDirection: "column" }}>
+            <ThemeProvider theme={theme}>
+              <FormTextField
+                sx={{
+                  ":before": { borderBottomColor: "purple" },
+                  ":after": { borderBottomColor: "purple" },
+                }}
+                id="outlined-basic"
+                label="Email"
+                variant="filled"
+                value={email}
+                // margin="normal"
+                onChange={handleEmail}
+                // autoComplete="new-password"
+                autoComplete="off"
+              />
+            </ThemeProvider>
 
-            <FormControl sx={{ m: 1, width: "25ch" }} variant="outlined">
-              <InputLabel htmlFor="outlined-adornment-password">
+            <FormControl sx={passwordStyle} variant="filled">
+              <InputLabel htmlFor="filled-adornment-password">
                 Password
               </InputLabel>
-              <OutlinedInput
-                margin="normal"
-                sx={formTextStyle}
+              <FilledInput
+                helperText=" "
+                disableUnderline
+                // margin="normal"
+                // sx={formTextStyle}
                 autoComplete="new-password"
-                id="outlined-adornment-password"
+                id="filled-adornment-password"
                 type={values.showPassword ? "text" : "password"}
                 value={values.password}
                 onChange={handleChange("password")}
                 endAdornment={
-                  <InputAdornment
-                    position="end"
-                    sx={{ color: "black", fill: "black" }}
-                  >
+                  <InputAdornment position="end">
                     <IconButton
                       // color="black"
                       aria-label="toggle password visibility"

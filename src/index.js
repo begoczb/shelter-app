@@ -6,13 +6,17 @@ import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter } from "react-router-dom";
 import { AuthContextWrapper } from "./context/auth.context";
 import { ListingsContextWrapper } from "./context/listings.context";
+import { theme } from "./utils/globalStyles";
+import { ThemeProvider } from "styled-components";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <BrowserRouter>
     <AuthContextWrapper>
       <ListingsContextWrapper>
-        <App />
+        <ThemeProvider theme={theme}>
+          <App />
+        </ThemeProvider>
       </ListingsContextWrapper>
     </AuthContextWrapper>
   </BrowserRouter>

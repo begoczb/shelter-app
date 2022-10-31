@@ -5,8 +5,9 @@ import { useEffect } from "react";
 import axios from "axios";
 import { API_URL } from "../utils/constants";
 import { Link } from "react-router-dom";
-import { backgroundStyleGen } from "../utils/globalStyles";
+import { backgroundStyleGen, informationLabel } from "../utils/globalStyles";
 import ListingThumbnail from "../components/ListingThumbnail";
+import { Container } from "@mui/system";
 
 const ProfilePage = () => {
   const { user, getToken } = useContext(AuthContext);
@@ -14,33 +15,61 @@ const ProfilePage = () => {
 
   const [hostInfo, setHostInfo] = useState("");
   const [hostRooms, setHostRooms] = useState([]);
+  const [guestInfo, setGuestInfo] = useState("");
 
   useEffect(() => {
-    const getHostInfo = async () => {
-      const token = getToken();
-      const { data } = await axios({
-        method: "get",
-        baseURL: API_URL,
-        url: "host",
-        headers: { Authorization: `Bearer ${token}` },
-      });
-      setHostInfo(data.hostInfo);
-      setHostRooms(data.roomInfo);
-    };
+    if (user.userType === "host") {
+      const getHostInfo = async () => {
+        const token = getToken();
+        const { data } = await axios({
+          method: "get",
+          baseURL: API_URL,
+          url: "host",
+          headers: { Authorization: `Bearer ${token}` },
+        });
+        setHostInfo(data.hostInfo);
+        setHostRooms(data.roomInfo);
+      };
 
-    getHostInfo();
+      getHostInfo();
+    } else {
+      const getGuestInfo = async () => {
+        const token = getToken();
+        const { data } = await axios({
+          method: "get",
+          baseURL: API_URL,
+          url: "guest",
+          headers: { Authorization: `Bearer ${token}` },
+        });
+        setGuestInfo(data.guestInfo);
+      };
+
+      getGuestInfo();
+    }
   }, []);
 
-  return (
+  return user.userType === "host" ? (
     <>
       <main style={backgroundStyleGen}>
-        <h3>Hello {user.name} </h3>
-        <h4>{user.userType}</h4>
+        <h3>My profile</h3>
 
-        <div>
-          <span>{hostInfo.firstName}</span>
-          <span>{hostInfo.lastName}</span>
-          <span>{hostInfo.email}</span>
+        <Container
+          sx={{
+            position: "absolute",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            height: "60%",
+            alignSelf: "center",
+            alignContent: "center",
+            justifyContent: "space-evenly",
+            top: "50%",
+            transform: "translateY(-50%)",
+          }}
+        >
+          <span style={informationLabel}>{hostInfo.firstName}</span>
+          <span style={informationLabel}>{hostInfo.lastName}</span>
+          <span style={informationLabel}>{hostInfo.email}</span>
           <BasicModal hostRooms={hostRooms} setHostRooms={setHostRooms} />
           <ul>
             {hostRooms.map((elem) => (
@@ -53,7 +82,31 @@ const ProfilePage = () => {
               </Link>
             ))}
           </ul>
-        </div>
+        </Container>
+      </main>
+    </>
+  ) : (
+    <>
+      <main style={backgroundStyleGen}>
+        <h3>My profile</h3>
+
+        <Container
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "flex-start",
+            // height: "60%",
+            alignSelf: "center",
+            alignContent: "flex-start",
+            justifyContent: "center",
+            // top: "50%",
+            // transform: "translateY(-50%)",
+          }}
+        >
+          <span style={informationLabel}>{guestInfo.firstName}</span>
+          <span style={informationLabel}>{guestInfo.lastName}</span>
+          <span style={informationLabel}>{guestInfo.email}</span>
+        </Container>
       </main>
     </>
   );
