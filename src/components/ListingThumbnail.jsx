@@ -12,8 +12,8 @@ const listingThumbStyle = {
   display: "flex",
   paddingLeft: "0",
   paddingRight: "0.5rem",
-  minWidth: "100vw",
-  maxWidth: "100vw",
+  minWidth: "97vw",
+  maxWidth: "97vw",
 };
 
 const textStyle = {
@@ -28,7 +28,6 @@ const addressStyle = {
   color: "black",
   fontStyle: "normal",
   fontWeight: 400,
-  fontSize: "1rem",
   lineHeight: "17px",
   fontSize: "0.9rem",
 };

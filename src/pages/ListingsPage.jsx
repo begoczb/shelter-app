@@ -23,7 +23,7 @@ const ListingsPage = () => {
 
   const { setListings, listings } = useContext(ListingsContext);
 
-  const { getToken } = useContext(AuthContext);
+  const { getToken, user } = useContext(AuthContext);
 
   const { isLoaded } = useJsApiLoader({
     id: "google-maps",

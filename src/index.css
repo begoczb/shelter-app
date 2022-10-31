@@ -19,9 +19,10 @@ body > * {
   box-sizing: border-box;
   margin: 0;
   text-decoration: none;
+}
+a {
   color: white;
 }
-
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;

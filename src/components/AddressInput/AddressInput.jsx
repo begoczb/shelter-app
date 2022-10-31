@@ -9,6 +9,8 @@ import LocationOnIcon from "@mui/icons-material/LocationOn";
 
 import { Autocomplete, Box, Grid, TextField, Typography } from "@mui/material";
 import axios from "axios";
+import { useContext } from "react";
+import { AuthContext } from "../../context/auth.context";
 
 const searchBarStyle = {
   position: "absolute",
@@ -40,6 +42,8 @@ const AddressInput = ({ handleAddress, status, handleLocation }) => {
   const [inputValue, setInputValue] = useState("");
   const [options, setOptions] = useState([]);
   const loaded = useRef(false);
+
+  const { user } = useContext(AuthContext);
 
   if (typeof window !== "undefined" && !loaded.current) {
     if (!document.querySelector("#google-maps")) {
@@ -105,6 +109,7 @@ const AddressInput = ({ handleAddress, status, handleLocation }) => {
   return (
     <>
       <Autocomplete
+        disabled={user.userType === "host" ? true : false}
         // margin="normal"
         sx={
           status
@@ -136,20 +141,20 @@ const AddressInput = ({ handleAddress, status, handleLocation }) => {
                   top: "-3px",
                 },
                 "& label.Mui-focused": {
-                  color: "black",
+                  color: "#D8B6C0",
                 },
                 "& .MuiInput-underline:after": {
-                  borderBottomColor: "#FFD900",
+                  borderBottomColor: "#973C57",
                 },
                 "& .MuiOutlinedInput-root": {
                   "& fieldset": {
-                    borderColor: "#FFD900",
+                    borderColor: "#973C57",
                   },
                   "&:hover fieldset": {
-                    borderColor: "#FFD900",
+                    borderColor: "#973C57",
                   },
                   "&.Mui-focused fieldset": {
-                    borderColor: "#FFD900",
+                    borderColor: "#973C57",
                   },
                 },
               }
