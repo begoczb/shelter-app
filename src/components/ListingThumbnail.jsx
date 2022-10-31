@@ -2,20 +2,6 @@ import { Container, Typography } from "@mui/material";
 import React from "react";
 import image from "../source/img/demo_thumb.png";
 
-const listingThumbStyle = {
-  height: "85px",
-  background: "#FDF2F5",
-  boxShadow: "2px 2px 4px rgba(0, 0, 0, 0.25)",
-  borderRadius: "15px",
-  justifyContent: "space-between",
-  marginBottom: "2px",
-  display: "flex",
-  paddingLeft: "0",
-  paddingRight: "0.5rem",
-  minWidth: "97vw",
-  maxWidth: "97vw",
-};
-
 const textStyle = {
   color: "black",
   fontStyle: "normal",
@@ -32,10 +18,10 @@ const addressStyle = {
   fontSize: "0.9rem",
 };
 
-const ListingThumbnail = ({ listing }) => {
+const ListingThumbnail = ({ listing, style }) => {
   return (
     <>
-      <Container sx={listingThumbStyle}>
+      <Container sx={style}>
         <img src={image} alt="demo-thumb" />
         <Container
           sx={{
@@ -49,7 +35,10 @@ const ListingThumbnail = ({ listing }) => {
           <Typography sx={addressStyle}>
             {listing.address.description}
           </Typography>
-          <Typography sx={addressStyle}>{listing.description}</Typography>
+          <Typography sx={addressStyle}>
+            I can host {listing.guests}
+            {listing.guests > 1 ? " people" : " person"}
+          </Typography>
         </Container>
       </Container>
     </>

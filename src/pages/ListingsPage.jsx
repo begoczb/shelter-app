@@ -17,6 +17,20 @@ import { Link } from "react-router-dom";
 
 const places = ["places"];
 
+const listingThumbStyle = {
+  height: "85px",
+  background: "#FDF2F5",
+  boxShadow: "2px 2px 4px rgba(0, 0, 0, 0.25)",
+  borderRadius: "15px",
+  justifyContent: "space-between",
+  marginBottom: "2px",
+  display: "flex",
+  paddingLeft: "0",
+  paddingRight: "0.5rem",
+  minWidth: "97vw",
+  maxWidth: "97vw",
+};
+
 const ListingsPage = () => {
   const [location, setLocation] = useState(null);
   const [placeId, setPlaceId] = useState("");
@@ -109,7 +123,7 @@ const ListingsPage = () => {
             key={listing._id}
             state={{ roomInfo: listing }}
           >
-            <ListingThumbnail listing={listing} />
+            <ListingThumbnail listing={listing} style={listingThumbStyle} />
           </Link>
         ))}
       </Container>
