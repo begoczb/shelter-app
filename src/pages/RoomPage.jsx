@@ -17,7 +17,7 @@ const RoomPage = () => {
 
   const { roomInfo, hostInfo } = state || {};
 
-  const [hostDetails, setHostDetails] = useState(null);
+  const [hostDetails, setHostDetails] = useState(hostInfo);
 
   useEffect(() => {
     if (!hostInfo) {
@@ -30,16 +30,12 @@ const RoomPage = () => {
           headers: { Authorization: `Bearer ${token}` },
         });
         console.log(data);
-        console.log(data.hostDetails);
-        setHostDetails(data.hostDetails);
+        setHostDetails(data);
       };
       getHostDetails();
-    } else {
-      setHostDetails(hostInfo);
     }
   }, []);
 
-  console.log(hostDetails);
   return (
     hostDetails && (
       <main id="room" style={backgroundStyleGen}>
