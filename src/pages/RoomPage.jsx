@@ -35,9 +35,9 @@ const RoomPage = () => {
     } else {
       setHostDetails(hostInfo);
     }
-    console.log(hostDetails);
   }, []);
 
+  console.log(hostDetails);
   return (
     hostDetails && (
       <main id="room" style={backgroundStyleGen}>
@@ -46,7 +46,7 @@ const RoomPage = () => {
 
           <img src={image} alt="listing" />
           <h1>{roomInfo.title}</h1>
-          <h2>{hostDetails.firstName}</h2>
+          <h2>{hostDetails ? hostDetails.firstName : " "}</h2>
           <p>{roomInfo.description}</p>
 
           <div className="container">
