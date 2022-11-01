@@ -114,7 +114,7 @@ const AddressInput = ({ handleAddress, status, handleLocation, disable }) => {
         sx={
           status
             ? {
-                ".css-154xyx0-MuiInputBase-root-MuiOutlinedInput-root": {
+                ".MuiInputBase-root-MuiOutlinedInput-root": {
                   width: " 221px",
                   height: "1rem",
 
@@ -127,7 +127,7 @@ const AddressInput = ({ handleAddress, status, handleLocation, disable }) => {
 
                   textOverflow: "ellipsis",
                 },
-                ".css-14s5rfu-MuiFormLabel-root-MuiInputLabel-root": {
+                ".MuiFormLabel-root-MuiInputLabel-root": {
                   fontSize: "1rem",
                   top: "-10px",
                 },
@@ -156,7 +156,7 @@ const AddressInput = ({ handleAddress, status, handleLocation, disable }) => {
                 },
               }
             : {
-                ".css-154xyx0-MuiInputBase-root-MuiOutlinedInput-root": {
+                ".MuiInputBase-root-MuiOutlinedInput-root": {
                   width: " 221px",
                   height: "1rem",
 
@@ -169,7 +169,7 @@ const AddressInput = ({ handleAddress, status, handleLocation, disable }) => {
 
                   textOverflow: "ellipsis",
                 },
-                ".css-14s5rfu-MuiFormLabel-root-MuiInputLabel-root": {
+                ".MuiFormLabel-root-MuiInputLabel-root": {
                   fontSize: "1rem",
                   top: "-10px",
                 },
