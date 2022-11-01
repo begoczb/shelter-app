@@ -20,7 +20,6 @@ const RoomPage = () => {
   const [hostDetails, setHostDetails] = useState(hostInfo);
 
   useEffect(() => {
-    if (!hostInfo) {
       const getHostDetails = async () => {
         const token = getToken();
         const { data } = await axios({
@@ -29,11 +28,10 @@ const RoomPage = () => {
           url: `host/${roomInfo.host}`,
           headers: { Authorization: `Bearer ${token}` },
         });
-        console.log(data);
         setHostDetails(data);
       };
-      getHostDetails();
-    }
+      if (!hostInfo) 
+         getHostDetails();
   }, []);
 
   return (
