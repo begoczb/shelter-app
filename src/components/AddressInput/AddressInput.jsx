@@ -132,7 +132,7 @@ const AddressInput = ({ handleAddress, status, handleLocation, disable }) => {
                   top: "-10px",
                 },
                 "#google-map-demo": {
-                  position: "absolute",
+                  // position: "absolute",
                   width: "70%",
                   left: "0",
                   top: "-3px",
@@ -174,7 +174,7 @@ const AddressInput = ({ handleAddress, status, handleLocation, disable }) => {
                   top: "-10px",
                 },
                 "#google-map-demo": {
-                  position: "absolute",
+                  // position: "absolute",
                   width: "70%",
                   left: "0",
                   top: "-3px",
