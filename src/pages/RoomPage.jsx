@@ -1,15 +1,44 @@
 import { Container } from "@mui/material";
 import React from "react";
+import { useContext, useState, useEffect } from "react";
+
 import { useLocation } from "react-router-dom";
 import { backgroundStyleGen } from "../utils/globalStyles";
 import image from "../source/img/demo.png";
 import "./RoomPage.css";
-
+import { API_URL } from "../utils/constants";
+import axios from "axios";
+import { AuthContext } from "../context/auth.context";
 
 const RoomPage = () => {
 
+  const { getToken } = useContext(AuthContext);
+
+
   const { state } = useLocation();
   const { hostInfo, roomInfo } = state || {};
+
+  const [hostDetails, setHostDetails] = useState("");
+
+
+  useEffect(() => {
+    if (!hostInfo) {
+      const getHostDetails = async () => {
+        const token = getToken();
+        const { data } = await axios({
+          method: "get",
+          baseURL: API_URL,
+          url: `host/${roomInfo.host}`,
+          headers: { Authorization: `Bearer ${token}` },
+        });
+        setHostDetails(data.hostDetails);
+        hostInfo = hostDetails;
+      };
+      getHostDetails();
+    }
+    }, []);
+
+
 
   return (
     <main id="room" style={backgroundStyleGen}>
