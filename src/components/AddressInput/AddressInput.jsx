@@ -160,7 +160,7 @@ const AddressInput = ({ handleAddress, status, handleLocation, disable }) => {
                   width: " 221px",
                   height: "1rem",
 
-                  background: "white",
+                  background: "yellow",
                   boxShadow: "2px 2px 4px rgba(0, 0, 0, 0.25)",
                   borderRadius: "15px",
                   border: "none",
