@@ -30,7 +30,7 @@ const Map = ({ location }) => {
   const navigate = useNavigate();
 
   const { listings } = useContext(ListingsContext);
-  console.log(listings);
+  // console.log(listings);
 
   useEffect(() => {
     if (location) {
