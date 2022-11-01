@@ -12,18 +12,6 @@ import axios from "axios";
 import { useContext } from "react";
 import { AuthContext } from "../../context/auth.context";
 
-const searchBarStyle = {
-  position: "absolute",
-  width: " 221px",
-  height: "30px",
-  left: "25px",
-  top: "90px",
-
-  background: "white",
-  boxShadow: "2px 2px 4px rgba(0, 0, 0, 0.25)",
-  borderRadius: "15px",
-};
-
 function loadScript(src, position, id) {
   if (!position) {
     return;
@@ -116,7 +104,7 @@ const AddressInput = ({ handleAddress, status, handleLocation, disable }) => {
             ? {
                 ".MuiOutlinedInput-root": {
                   width: " 221px",
-                  height: "1.2rem",
+                  height: "1.5rem",
 
                   background: "white",
                   boxShadow: "2px 2px 4px rgba(0, 0, 0, 0.25)",
