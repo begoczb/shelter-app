@@ -1,22 +1,18 @@
-import { Container } from "@mui/material";
-import React from "react";
-import { useContext, useState, useEffect } from "react";
-
+import { React, useContext, useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
+import axios from "axios";
+import { Container } from "@mui/material";
+import { AuthContext } from "../context/auth.context";
+import { API_URL } from "../utils/constants";
 import { backgroundStyleGen } from "../utils/globalStyles";
 import image from "../source/img/demo.png";
 import "./RoomPage.css";
-import { API_URL } from "../utils/constants";
-import axios from "axios";
-import { AuthContext } from "../context/auth.context";
 
 const RoomPage = () => {
+
   const { getToken } = useContext(AuthContext);
-
   const { state } = useLocation();
-
   const { roomInfo, hostInfo } = state || {};
-
   const [hostDetails, setHostDetails] = useState(hostInfo);
 
   useEffect(() => {
@@ -42,7 +38,7 @@ const RoomPage = () => {
 
           <img src={image} alt="listing" />
           <h1>{roomInfo.title}</h1>
-          <h2>{hostDetails ? hostDetails.firstName : " "}</h2>
+          <h2>{hostDetails}</h2>
           <p>{roomInfo.description}</p>
 
           <div className="container">
