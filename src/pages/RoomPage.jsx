@@ -14,8 +14,8 @@ const RoomPage = () => {
   const { getToken } = useContext(AuthContext);
 
   const { state } = useLocation();
-  let { hostInfo } = state || {};
-  const { roomInfo } = state || {};
+
+  const { roomInfo, hostInfo } = state || {};
 
   const [hostDetails, setHostDetails] = useState("");
 
@@ -30,9 +30,10 @@ const RoomPage = () => {
           headers: { Authorization: `Bearer ${token}` },
         });
         setHostDetails(data.hostDetails);
-        hostInfo = hostDetails;
       };
       getHostDetails();
+    } else {
+      setHostDetails(hostInfo);
     }
   }, []);
 
@@ -43,7 +44,7 @@ const RoomPage = () => {
 
         <img src={image} alt="listing" />
         <h1>{roomInfo.title}</h1>
-        <h2>{hostInfo.firstName}</h2>
+        <h2>{hostDetails.firstName}</h2>
         <p>{roomInfo.description}</p>
 
         <div className="container">
