@@ -12,8 +12,11 @@ import { AuthContext } from "../context/auth.context";
 
 const RoomPage = () => {
   const { getToken } = useContext(AuthContext);
+
   const { state } = useLocation();
+
   const { roomInfo, hostInfo } = state || {};
+
   const [hostDetails, setHostDetails] = useState(hostInfo);
 
   useEffect(() => {
@@ -39,7 +42,7 @@ const RoomPage = () => {
 
           <img src={image} alt="listing" />
           <h1>{roomInfo.title}</h1>
-          <h2>{hostDetails}</h2>
+          <h2>{hostDetails ? hostDetails.firstName : " "}</h2>
           <p>{roomInfo.description}</p>
 
           <div className="container">
