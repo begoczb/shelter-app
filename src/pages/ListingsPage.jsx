@@ -58,8 +58,6 @@ const ListingsPage = () => {
         url: "room",
         headers: { Authorization: `Bearer ${token}` },
       });
-
-      console.log(data);
       setListings([...data]);
     };
 

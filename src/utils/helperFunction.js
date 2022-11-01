@@ -24,7 +24,7 @@ function getBoundsZoomLevel(bounds, mapDim) {
   const latZoom = zoom(mapDim.height, WORLD_DIM.height, latFraction);
   const lngZoom = zoom(mapDim.width, WORLD_DIM.width, lngFraction);
 
-  console.log(latZoom, lngZoom, ZOOM_MAX);
+  // console.log(latZoom, lngZoom, ZOOM_MAX);
   return Math.min(latZoom, lngZoom, ZOOM_MAX);
 }
 
