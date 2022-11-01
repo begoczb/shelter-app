@@ -120,7 +120,6 @@ const LoginPage = () => {
                 Password
               </InputLabel>
               <FilledInput
-                helperText=" "
                 disableUnderline
                 // margin="normal"
                 // sx={formTextStyle}
