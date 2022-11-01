@@ -116,18 +116,18 @@ const AddressInput = ({ handleAddress, status, handleLocation, disable }) => {
             ? {
                 ".MuiOutlinedInput-root": {
                   width: " 221px",
-                  height: "1rem",
+                  height: "1.2rem",
 
                   background: "white",
                   boxShadow: "2px 2px 4px rgba(0, 0, 0, 0.25)",
-                  borderRadius: "15px",
+                  borderRadius: "25px",
                   border: "none",
                   padding: "1.5rem",
                   textAlign: "center",
 
                   textOverflow: "ellipsis",
                 },
-                ".css-14s5rfu-MuiFormLabel-root-MuiInputLabel-root": {
+                "#google-map-demo-label": {
                   fontSize: "1rem",
                   top: "-10px",
                 },
@@ -160,7 +160,7 @@ const AddressInput = ({ handleAddress, status, handleLocation, disable }) => {
                   width: " 221px",
                   height: "1rem",
 
-                  background: "yellow",
+                  background: "white",
                   boxShadow: "2px 2px 4px rgba(0, 0, 0, 0.25)",
                   borderRadius: "15px",
                   border: "none",
@@ -169,7 +169,7 @@ const AddressInput = ({ handleAddress, status, handleLocation, disable }) => {
 
                   textOverflow: "ellipsis",
                 },
-                ".css-14s5rfu-MuiFormLabel-root-MuiInputLabel-root": {
+                "#google-map-demo-label": {
                   fontSize: "1rem",
                   top: "-10px",
                 },
