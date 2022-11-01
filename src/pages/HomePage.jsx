@@ -10,6 +10,9 @@ import {
 import "./HomePage.css";
 import { backgroundStyleHome } from "../utils/globalStyles";
 import image from "../source/img/favpng_silhouette-city-skyline 1.png";
+import { useContext } from "react";
+import { AuthContext } from "../context/auth.context";
+import { useEffect } from "react";
 
 const buttonStyle = {
   width: "240px",
@@ -105,10 +108,16 @@ theme = responsiveFontSizes(theme);
 const HomePage = () => {
   const navigate = useNavigate();
 
+  const { isLoggedIn } = useContext(AuthContext);
+
   const getButtonType = async (type) => {
     // console.log(type);
     navigate("/signup", { state: { type: type } });
   };
+
+  useEffect(() => {
+    isLoggedIn && navigate("/listings");
+  }, []);
 
   return (
     <main id="home">
