@@ -29,6 +29,7 @@ const RoomPage = () => {
           url: `host/${roomInfo.host}`,
           headers: { Authorization: `Bearer ${token}` },
         });
+        console.log(data.hostDetails);
         setHostDetails(data.hostDetails);
       };
       getHostDetails();
