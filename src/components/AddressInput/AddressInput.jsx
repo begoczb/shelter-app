@@ -114,7 +114,7 @@ const AddressInput = ({ handleAddress, status, handleLocation, disable }) => {
         sx={
           status
             ? {
-                ".MuiInputBase-root-MuiOutlinedInput-root": {
+                ".MuiOutlinedInput-root": {
                   width: " 221px",
                   height: "1rem",
 
@@ -127,12 +127,12 @@ const AddressInput = ({ handleAddress, status, handleLocation, disable }) => {
 
                   textOverflow: "ellipsis",
                 },
-                ".MuiFormLabel-root-MuiInputLabel-root": {
+                ".css-14s5rfu-MuiFormLabel-root-MuiInputLabel-root": {
                   fontSize: "1rem",
                   top: "-10px",
                 },
                 "#google-map-demo": {
-                  // position: "absolute",
+                  position: "absolute",
                   width: "70%",
                   left: "0",
                   top: "-3px",
@@ -156,7 +156,7 @@ const AddressInput = ({ handleAddress, status, handleLocation, disable }) => {
                 },
               }
             : {
-                ".MuiInputBase-root-MuiOutlinedInput-root": {
+                ".MuiOutlinedInput-root": {
                   width: " 221px",
                   height: "1rem",
 
@@ -169,12 +169,12 @@ const AddressInput = ({ handleAddress, status, handleLocation, disable }) => {
 
                   textOverflow: "ellipsis",
                 },
-                ".MuiFormLabel-root-MuiInputLabel-root": {
+                ".css-14s5rfu-MuiFormLabel-root-MuiInputLabel-root": {
                   fontSize: "1rem",
                   top: "-10px",
                 },
                 "#google-map-demo": {
-                  // position: "absolute",
+                  position: "absolute",
                   width: "70%",
                   left: "0",
                   top: "-3px",
