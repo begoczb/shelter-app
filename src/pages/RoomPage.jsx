@@ -35,14 +35,13 @@ const RoomPage = () => {
   }, []);
 
   return (
-    hostDetails && (
       <main id="room" style={backgroundStyleGen}>
         <Container className="global">
           <p>{roomInfo.address.description}</p>
 
           <img src={image} alt="listing" />
           <h1>{roomInfo.title}</h1>
-          <h2>{hostDetails ? hostDetails.firstName : " "}</h2>
+          <h2>{hostDetails.firstName}</h2>
           <p>{roomInfo.description}</p>
 
           <div className="container">
@@ -83,7 +82,6 @@ const RoomPage = () => {
           </div>
         </Container>
       </main>
-    )
   );
 };
 
