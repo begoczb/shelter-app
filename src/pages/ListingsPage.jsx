@@ -101,7 +101,7 @@ const ListingsPage = () => {
         <AddressInput
           status={false}
           handleLocation={handleLocation}
-          disable={true}
+          disable={user.userType === "host" ? true : false}
         />
         <Button variant="contained" sx={yellowButtonStyle}>
           Filter
